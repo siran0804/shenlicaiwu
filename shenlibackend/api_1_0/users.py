@@ -5,7 +5,8 @@ from shenlibackend import db
 from shenlibackend.models.users import User
 from shenlibackend.models.users import Roles
 from shenlibackend.utils.shenliexceptions import *
-from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required
+from shenlibackend.utils.roleutil import get_roles
+from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity
 
 
 def error_handler(error):
@@ -58,6 +59,26 @@ def login():
     }
 
     return jsonify(ret)
+
+
+@api.route("/queryuser", methods=["PODT"])
+@jwt_required()
+def query_user():
+    request_parameter = request.get_json()
+    id = request_parameter.get("id", None)
+
+    if not id:
+        current_user = get_jwt_identity()
+        id, role = get_roles(current_user)
+
+    user = User.query.get(id)
+    user_info = user.serialize()
+    return jsonify(
+        code=1000,
+        msg="success",
+        display=False,
+        data=user_info
+    )
 
 
 @api.route('/addemployee', methods=['POST'])

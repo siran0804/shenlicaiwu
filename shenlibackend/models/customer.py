@@ -14,7 +14,12 @@ class Customer(BaseModel):
     industry = db.Column(db.String(50))
 
     client_progress = db.Column(db.String(32))
-    sales_consultant = db.Column(db.String(64))
+
+    # 销售顾问
+    sales_consultant = db.Column(db.BigInteger)
+
+
+
 
     def __repr__(self):
         return f'<Customer {self.name}>'
