@@ -1,0 +1,594 @@
+[2023-09-05 16:07:08,508] INFO in [log.py:128]: SELECT DATABASE()
+[2023-09-05 16:07:08,509] INFO in [log.py:128]: [raw sql] {}
+[2023-09-05 16:07:08,510] INFO in [log.py:128]: SELECT @@sql_mode
+[2023-09-05 16:07:08,510] INFO in [log.py:128]: [raw sql] {}
+[2023-09-05 16:07:08,510] INFO in [log.py:128]: SELECT @@lower_case_table_names
+[2023-09-05 16:07:08,510] INFO in [log.py:128]: [raw sql] {}
+[2023-09-05 16:07:08,511] INFO in [log.py:128]: BEGIN (implicit)
+[2023-09-05 16:07:08,511] INFO in [log.py:128]: COMMIT
+[2023-09-05 16:08:30,587] INFO in [log.py:128]: BEGIN (implicit)
+[2023-09-05 16:08:30,587] INFO in [log.py:128]: COMMIT
+[2023-09-05 16:08:33,274] INFO in [log.py:128]: BEGIN (implicit)
+[2023-09-05 16:08:33,275] INFO in [log.py:128]: COMMIT
+[2023-09-05 16:10:40,714] INFO in [log.py:128]: SELECT DATABASE()
+[2023-09-05 16:10:40,715] INFO in [log.py:128]: [raw sql] {}
+[2023-09-05 16:10:40,715] INFO in [log.py:128]: SELECT @@sql_mode
+[2023-09-05 16:10:40,715] INFO in [log.py:128]: [raw sql] {}
+[2023-09-05 16:10:40,716] INFO in [log.py:128]: SELECT @@lower_case_table_names
+[2023-09-05 16:10:40,716] INFO in [log.py:128]: [raw sql] {}
+[2023-09-05 16:10:40,717] INFO in [log.py:128]: BEGIN (implicit)
+[2023-09-05 16:10:40,717] INFO in [log.py:128]: SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = %(table_schema)s AND table_name = %(table_name)s
+[2023-09-05 16:10:40,718] INFO in [log.py:128]: [generated in 0.00028s] {'table_schema': 'shenlicaiwu', 'table_name': 'user'}
+[2023-09-05 16:10:40,722] INFO in [log.py:128]: ROLLBACK
+[2023-09-05 16:23:55,712] INFO in [log.py:128]: SELECT DATABASE()
+[2023-09-05 16:23:55,713] INFO in [log.py:128]: [raw sql] {}
+[2023-09-05 16:23:55,713] INFO in [log.py:128]: SELECT @@sql_mode
+[2023-09-05 16:23:55,714] INFO in [log.py:128]: [raw sql] {}
+[2023-09-05 16:23:55,714] INFO in [log.py:128]: SELECT @@lower_case_table_names
+[2023-09-05 16:23:55,714] INFO in [log.py:128]: [raw sql] {}
+[2023-09-05 16:23:55,715] INFO in [log.py:128]: BEGIN (implicit)
+[2023-09-05 16:23:55,715] INFO in [log.py:128]: SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = %(table_schema)s AND table_name = %(table_name)s
+[2023-09-05 16:23:55,716] INFO in [log.py:128]: [generated in 0.00040s] {'table_schema': 'shenlicaiwu', 'table_name': 'user'}
+[2023-09-05 16:23:55,717] INFO in [log.py:128]: ROLLBACK
+[2023-09-05 16:24:33,889] INFO in [log.py:128]: SELECT DATABASE()
+[2023-09-05 16:24:33,889] INFO in [log.py:128]: [raw sql] {}
+[2023-09-05 16:24:33,890] INFO in [log.py:128]: SELECT @@sql_mode
+[2023-09-05 16:24:33,890] INFO in [log.py:128]: [raw sql] {}
+[2023-09-05 16:24:33,890] INFO in [log.py:128]: SELECT @@lower_case_table_names
+[2023-09-05 16:24:33,891] INFO in [log.py:128]: [raw sql] {}
+[2023-09-05 16:24:33,891] INFO in [log.py:128]: BEGIN (implicit)
+[2023-09-05 16:24:33,892] INFO in [log.py:128]: SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = %(table_schema)s AND table_name = %(table_name)s
+[2023-09-05 16:24:33,892] INFO in [log.py:128]: [generated in 0.00029s] {'table_schema': 'shenlicaiwu', 'table_name': 'user'}
+[2023-09-05 16:24:33,893] INFO in [log.py:128]: 
+CREATE TABLE user (
+	id BIGINT NOT NULL, 
+	username VARCHAR(64), 
+	phone VARCHAR(11), 
+	password_hash VARCHAR(128), 
+	id_card_num VARCHAR(18), 
+	email VARCHAR(64), 
+	`role` BIGINT, 
+	dept BIGINT, 
+	create_at DATETIME, 
+	update_at DATETIME, 
+	PRIMARY KEY (id)
+)
+
+
+[2023-09-05 16:24:33,894] INFO in [log.py:128]: [no key 0.00063s] {}
+[2023-09-05 16:24:33,928] INFO in [log.py:128]: CREATE UNIQUE INDEX ix_user_email ON user (email)
+[2023-09-05 16:24:33,928] INFO in [log.py:128]: [no key 0.00035s] {}
+[2023-09-05 16:24:33,957] INFO in [log.py:128]: CREATE INDEX ix_user_username ON user (username)
+[2023-09-05 16:24:33,957] INFO in [log.py:128]: [no key 0.00041s] {}
+[2023-09-05 16:24:33,968] INFO in [log.py:128]: CREATE UNIQUE INDEX ix_user_id_card_num ON user (id_card_num)
+[2023-09-05 16:24:33,968] INFO in [log.py:128]: [no key 0.00038s] {}
+[2023-09-05 16:24:33,979] INFO in [log.py:128]: CREATE UNIQUE INDEX ix_user_phone ON user (phone)
+[2023-09-05 16:24:33,979] INFO in [log.py:128]: [no key 0.00050s] {}
+[2023-09-05 16:24:33,991] INFO in [log.py:128]: COMMIT
+[2023-09-05 16:29:50,961] INFO in [log.py:128]: BEGIN (implicit)
+[2023-09-05 16:29:50,962] INFO in [log.py:128]: INSERT INTO user (id, username, phone, password_hash, id_card_num, email, `role`, dept, create_at, update_at) VALUES (%(id)s, %(username)s, %(phone)s, %(password_hash)s, %(id_card_num)s, %(email)s, %(role)s, %(dept)s, %(create_at)s, %(update_at)s)
+[2023-09-05 16:29:50,963] INFO in [log.py:128]: [generated in 0.00045s] {'id': 4796692746364518401, 'username': 'test', 'phone': None, 'password_hash': 'pbkdf2:sha256:260000$YcWf8mDETH3lVoT5$39a4382710ebb7dfe0144f5130de6ae132a76a6768b122cfc86218a7cbe630d4', 'id_card_num': None, 'email': None, 'role': None, 'dept': None, 'create_at': datetime.datetime(2023, 9, 5, 16, 29, 50, 962417), 'update_at': datetime.datetime(2023, 9, 5, 16, 29, 50, 962417)}
+[2023-09-05 16:29:50,969] INFO in [log.py:128]: COMMIT
+[2023-09-05 16:30:22,026] INFO in [log.py:128]: BEGIN (implicit)
+[2023-09-05 16:30:22,028] INFO in [log.py:128]: SELECT user.id AS user_id, user.username AS user_username, user.phone AS user_phone, user.password_hash AS user_password_hash, user.id_card_num AS user_id_card_num, user.email AS user_email, user.`role` AS user_role, user.dept AS user_dept, user.create_at AS user_create_at, user.update_at AS user_update_at 
+FROM user
+[2023-09-05 16:30:22,029] INFO in [log.py:128]: [generated in 0.00055s] {}
+[2023-09-05 16:30:26,865] INFO in [log.py:128]: SELECT user.id AS user_id, user.username AS user_username, user.phone AS user_phone, user.password_hash AS user_password_hash, user.id_card_num AS user_id_card_num, user.email AS user_email, user.`role` AS user_role, user.dept AS user_dept, user.create_at AS user_create_at, user.update_at AS user_update_at 
+FROM user
+[2023-09-05 16:30:26,865] INFO in [log.py:128]: [cached since 4.838s ago] {}
+[2023-09-05 16:30:34,305] INFO in [log.py:128]: SELECT user.id AS user_id, user.username AS user_username, user.phone AS user_phone, user.password_hash AS user_password_hash, user.id_card_num AS user_id_card_num, user.email AS user_email, user.`role` AS user_role, user.dept AS user_dept, user.create_at AS user_create_at, user.update_at AS user_update_at 
+FROM user
+[2023-09-05 16:30:34,305] INFO in [log.py:128]: [cached since 12.28s ago] {}
+[2023-09-05 16:30:51,027] INFO in [log.py:128]: UPDATE user SET username=%(username)s, update_at=%(update_at)s WHERE user.id = %(user_id)s
+[2023-09-05 16:30:51,028] INFO in [log.py:128]: [generated in 0.00068s] {'username': 'test1', 'update_at': datetime.datetime(2023, 9, 5, 16, 30, 51, 27131), 'user_id': 4796692746364518401}
+[2023-09-05 16:30:51,032] INFO in [log.py:128]: COMMIT
+[2023-09-05 16:32:15,650] INFO in [log.py:128]: BEGIN (implicit)
+[2023-09-05 16:32:15,650] INFO in [log.py:128]: INSERT INTO user (id, username, phone, password_hash, id_card_num, email, `role`, dept, create_at, update_at) VALUES (%(id)s, %(username)s, %(phone)s, %(password_hash)s, %(id_card_num)s, %(email)s, %(role)s, %(dept)s, %(create_at)s, %(update_at)s)
+[2023-09-05 16:32:15,651] INFO in [log.py:128]: [cached since 144.7s ago] {'id': 4796692746364518401, 'username': 'test', 'phone': None, 'password_hash': 'pbkdf2:sha256:260000$ZXEEVhIqUsFNLYVE$49ebd62eb37fd28410293cbf74ac30e8abf0f4f735700d9141fec9827776de9f', 'id_card_num': None, 'email': None, 'role': None, 'dept': None, 'create_at': datetime.datetime(2023, 9, 5, 16, 32, 15, 650089), 'update_at': datetime.datetime(2023, 9, 5, 16, 32, 15, 650089)}
+[2023-09-05 16:32:15,654] INFO in [log.py:128]: ROLLBACK
+[2023-09-05 16:39:37,342] INFO in [log.py:128]: SELECT DATABASE()
+[2023-09-05 16:39:37,342] INFO in [log.py:128]: [raw sql] {}
+[2023-09-05 16:39:37,343] INFO in [log.py:128]: SELECT @@sql_mode
+[2023-09-05 16:39:37,343] INFO in [log.py:128]: [raw sql] {}
+[2023-09-05 16:39:37,344] INFO in [log.py:128]: SELECT @@lower_case_table_names
+[2023-09-05 16:39:37,344] INFO in [log.py:128]: [raw sql] {}
+[2023-09-05 16:39:37,345] INFO in [log.py:128]: BEGIN (implicit)
+[2023-09-05 16:39:37,346] INFO in [log.py:128]: INSERT INTO user (id, username, phone, password_hash, id_card_num, email, `role`, dept, create_at, update_at) VALUES (%(id)s, %(username)s, %(phone)s, %(password_hash)s, %(id_card_num)s, %(email)s, %(role)s, %(dept)s, %(create_at)s, %(update_at)s)
+[2023-09-05 16:39:37,346] INFO in [log.py:128]: [generated in 0.00030s] {'id': 7097729491593728001, 'username': 'test01', 'phone': None, 'password_hash': 'pbkdf2:sha256:260000$WhB5FViFHYBRlowk$82404fdda052bc11c14f85f12a515b0586bc96396f28a95a48baac4d3a5e7747', 'id_card_num': None, 'email': None, 'role': None, 'dept': None, 'create_at': datetime.datetime(2023, 9, 5, 16, 39, 37, 346674), 'update_at': datetime.datetime(2023, 9, 5, 16, 39, 37, 346674)}
+[2023-09-05 16:39:37,347] INFO in [log.py:128]: INSERT INTO user (id, username, phone, password_hash, id_card_num, email, `role`, dept, create_at, update_at) VALUES (%(id)s, %(username)s, %(phone)s, %(password_hash)s, %(id_card_num)s, %(email)s, %(role)s, %(dept)s, %(create_at)s, %(update_at)s)
+[2023-09-05 16:39:37,348] INFO in [log.py:128]: [cached since 0.001737s ago] {'id': 7097729491593728001, 'username': 'test01', 'phone': None, 'password_hash': 'pbkdf2:sha256:260000$uE4kqaf9Q0gZlK7X$70557dbfd73a8f0adcf4d644bbd3f3fbc143219ae930475f39712d494927061c', 'id_card_num': None, 'email': None, 'role': None, 'dept': None, 'create_at': datetime.datetime(2023, 9, 5, 16, 39, 37, 347674), 'update_at': datetime.datetime(2023, 9, 5, 16, 39, 37, 347674)}
+[2023-09-05 16:39:37,348] INFO in [log.py:128]: ROLLBACK
+[2023-09-05 16:44:26,886] INFO in [log.py:128]: SELECT DATABASE()
+[2023-09-05 16:44:26,886] INFO in [log.py:128]: [raw sql] {}
+[2023-09-05 16:44:26,886] INFO in [log.py:128]: SELECT @@sql_mode
+[2023-09-05 16:44:26,887] INFO in [log.py:128]: [raw sql] {}
+[2023-09-05 16:44:26,887] INFO in [log.py:128]: SELECT @@lower_case_table_names
+[2023-09-05 16:44:26,887] INFO in [log.py:128]: [raw sql] {}
+[2023-09-05 16:44:26,887] INFO in [log.py:128]: BEGIN (implicit)
+[2023-09-05 16:44:26,889] INFO in [log.py:128]: INSERT INTO user (id, username, phone, password_hash, id_card_num, email, `role`, dept, create_at, update_at) VALUES (%(id)s, %(username)s, %(phone)s, %(password_hash)s, %(id_card_num)s, %(email)s, %(role)s, %(dept)s, %(create_at)s, %(update_at)s)
+[2023-09-05 16:44:26,889] INFO in [log.py:128]: [generated in 0.00040s] {'id': 7097730971419676672, 'username': 'test01', 'phone': None, 'password_hash': 'pbkdf2:sha256:260000$ijmQRE0zMTktD4Lj$aaffff6ad943124fb65b1bb44b5a4bb6eb968dc0f2c09c1862f7ea3a63031cc1', 'id_card_num': None, 'email': None, 'role': None, 'dept': None, 'create_at': datetime.datetime(2023, 9, 5, 16, 44, 26, 888650), 'update_at': datetime.datetime(2023, 9, 5, 16, 44, 26, 888650)}
+[2023-09-05 16:44:26,890] INFO in [log.py:128]: COMMIT
+[2023-09-05 16:44:43,128] INFO in [log.py:128]: BEGIN (implicit)
+[2023-09-05 16:44:43,129] INFO in [log.py:128]: INSERT INTO user (id, username, phone, password_hash, id_card_num, email, `role`, dept, create_at, update_at) VALUES (%(id)s, %(username)s, %(phone)s, %(password_hash)s, %(id_card_num)s, %(email)s, %(role)s, %(dept)s, %(create_at)s, %(update_at)s)
+[2023-09-05 16:44:43,129] INFO in [log.py:128]: [cached since 16.24s ago] {'id': 7097730971419676672, 'username': 'test01', 'phone': None, 'password_hash': 'pbkdf2:sha256:260000$jNgh1d3vYYjztMjD$9e7e67724925e63e981ed6186794fb0b62cd6d5f983e31f8587144f46db664a9', 'id_card_num': None, 'email': None, 'role': None, 'dept': None, 'create_at': datetime.datetime(2023, 9, 5, 16, 44, 43, 129822), 'update_at': datetime.datetime(2023, 9, 5, 16, 44, 43, 129822)}
+[2023-09-05 16:44:43,130] INFO in [log.py:128]: ROLLBACK
+[2023-09-05 16:47:00,302] INFO in [log.py:128]: SELECT DATABASE()
+[2023-09-05 16:47:00,303] INFO in [log.py:128]: [raw sql] {}
+[2023-09-05 16:47:00,304] INFO in [log.py:128]: SELECT @@sql_mode
+[2023-09-05 16:47:00,304] INFO in [log.py:128]: [raw sql] {}
+[2023-09-05 16:47:00,304] INFO in [log.py:128]: SELECT @@lower_case_table_names
+[2023-09-05 16:47:00,305] INFO in [log.py:128]: [raw sql] {}
+[2023-09-05 16:47:00,305] INFO in [log.py:128]: BEGIN (implicit)
+[2023-09-05 16:47:00,307] INFO in [log.py:128]: INSERT INTO user (id, username, phone, password_hash, id_card_num, email, `role`, dept, create_at, update_at) VALUES (%(id)s, %(username)s, %(phone)s, %(password_hash)s, %(id_card_num)s, %(email)s, %(role)s, %(dept)s, %(create_at)s, %(update_at)s)
+[2023-09-05 16:47:00,307] INFO in [log.py:128]: [generated in 0.00040s] {'id': 7097731643074547712, 'username': 'test01', 'phone': None, 'password_hash': 'pbkdf2:sha256:260000$LhqBOafc415SUvq9$2520e0dbe7816b3bb3cbf23746d4855c2d62208e1d64857824ca8c71febe180a', 'id_card_num': None, 'email': None, 'role': None, 'dept': None, 'create_at': datetime.datetime(2023, 9, 5, 16, 47, 0, 307285), 'update_at': datetime.datetime(2023, 9, 5, 16, 47, 0, 307285)}
+[2023-09-05 16:47:00,308] INFO in [log.py:128]: COMMIT
+[2023-09-05 16:48:32,978] INFO in [log.py:128]: BEGIN (implicit)
+[2023-09-05 16:48:32,978] INFO in [log.py:128]: INSERT INTO user (id, username, phone, password_hash, id_card_num, email, `role`, dept, create_at, update_at) VALUES (%(id)s, %(username)s, %(phone)s, %(password_hash)s, %(id_card_num)s, %(email)s, %(role)s, %(dept)s, %(create_at)s, %(update_at)s)
+[2023-09-05 16:48:32,979] INFO in [log.py:128]: [cached since 92.67s ago] {'id': 7097731643074547712, 'username': '1', 'phone': None, 'password_hash': 'pbkdf2:sha256:260000$CAmX9LXALrccbXiQ$812a031a8032f3f651214d6d5c9f94869c252cc756a5a9d45b118c471d7a4f67', 'id_card_num': None, 'email': None, 'role': None, 'dept': None, 'create_at': datetime.datetime(2023, 9, 5, 16, 48, 32, 978421), 'update_at': datetime.datetime(2023, 9, 5, 16, 48, 32, 978421)}
+[2023-09-05 16:48:32,980] INFO in [log.py:128]: ROLLBACK
+[2023-10-09 14:48:58,452] INFO in [log.py:128]: SELECT DATABASE()
+[2023-10-09 14:48:58,453] INFO in [log.py:128]: [raw sql] {}
+[2023-10-09 14:48:58,453] INFO in [log.py:128]: SELECT @@sql_mode
+[2023-10-09 14:48:58,453] INFO in [log.py:128]: [raw sql] {}
+[2023-10-09 14:48:58,454] INFO in [log.py:128]: SELECT @@lower_case_table_names
+[2023-10-09 14:48:58,454] INFO in [log.py:128]: [raw sql] {}
+[2023-10-09 14:48:58,455] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-09 14:48:58,455] INFO in [log.py:128]: SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = %(table_schema)s AND table_name = %(table_name)s
+[2023-10-09 14:48:58,455] INFO in [log.py:128]: [generated in 0.00021s] {'table_schema': 'shenlicaiwu', 'table_name': 'user'}
+[2023-10-09 14:48:58,477] INFO in [log.py:128]: SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = %(table_schema)s AND table_name = %(table_name)s
+[2023-10-09 14:48:58,477] INFO in [log.py:128]: [cached since 0.02189s ago] {'table_schema': 'shenlicaiwu', 'table_name': 'roles'}
+[2023-10-09 14:48:58,478] INFO in [log.py:128]: SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = %(table_schema)s AND table_name = %(table_name)s
+[2023-10-09 14:48:58,478] INFO in [log.py:128]: [cached since 0.02311s ago] {'table_schema': 'shenlicaiwu', 'table_name': 'departments'}
+[2023-10-09 14:48:58,480] INFO in [log.py:128]: 
+CREATE TABLE roles (
+	create_at DATETIME, 
+	update_at DATETIME, 
+	id BIGINT NOT NULL AUTO_INCREMENT, 
+	name VARCHAR(64), 
+	permission VARCHAR(64), 
+	PRIMARY KEY (id)
+)
+
+
+[2023-10-09 14:48:58,480] INFO in [log.py:128]: [no key 0.00041s] {}
+[2023-10-09 14:48:58,520] INFO in [log.py:128]: 
+CREATE TABLE departments (
+	create_at DATETIME, 
+	update_at DATETIME, 
+	id BIGINT NOT NULL AUTO_INCREMENT, 
+	name VARCHAR(512), 
+	idlink VARCHAR(1024), 
+	parent BIGINT, 
+	pname VARCHAR(512), 
+	PRIMARY KEY (id), 
+	UNIQUE (idlink)
+)
+
+
+[2023-10-09 14:48:58,521] INFO in [log.py:128]: [no key 0.00083s] {}
+[2023-10-09 14:48:58,522] INFO in [log.py:128]: ROLLBACK
+[2023-10-09 14:49:54,765] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-09 14:49:54,765] INFO in [log.py:128]: SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = %(table_schema)s AND table_name = %(table_name)s
+[2023-10-09 14:49:54,766] INFO in [log.py:128]: [cached since 56.31s ago] {'table_schema': 'shenlicaiwu', 'table_name': 'user'}
+[2023-10-09 14:49:54,767] INFO in [log.py:128]: SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = %(table_schema)s AND table_name = %(table_name)s
+[2023-10-09 14:49:54,767] INFO in [log.py:128]: [cached since 56.31s ago] {'table_schema': 'shenlicaiwu', 'table_name': 'roles'}
+[2023-10-09 14:49:54,768] INFO in [log.py:128]: SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = %(table_schema)s AND table_name = %(table_name)s
+[2023-10-09 14:49:54,769] INFO in [log.py:128]: [cached since 56.31s ago] {'table_schema': 'shenlicaiwu', 'table_name': 'departments'}
+[2023-10-09 14:49:54,770] INFO in [log.py:128]: 
+CREATE TABLE departments (
+	create_at DATETIME, 
+	update_at DATETIME, 
+	id BIGINT NOT NULL AUTO_INCREMENT, 
+	name VARCHAR(512), 
+	idlink VARCHAR(1024), 
+	parent BIGINT, 
+	pname VARCHAR(512), 
+	PRIMARY KEY (id), 
+	UNIQUE (idlink)
+)
+
+
+[2023-10-09 14:49:54,771] INFO in [log.py:128]: [no key 0.00087s] {}
+[2023-10-09 14:49:54,771] INFO in [log.py:128]: ROLLBACK
+[2023-10-09 14:51:43,849] INFO in [log.py:128]: SELECT DATABASE()
+[2023-10-09 14:51:43,849] INFO in [log.py:128]: [raw sql] {}
+[2023-10-09 14:51:43,850] INFO in [log.py:128]: SELECT @@sql_mode
+[2023-10-09 14:51:43,850] INFO in [log.py:128]: [raw sql] {}
+[2023-10-09 14:51:43,851] INFO in [log.py:128]: SELECT @@lower_case_table_names
+[2023-10-09 14:51:43,851] INFO in [log.py:128]: [raw sql] {}
+[2023-10-09 14:51:43,851] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-09 14:51:43,852] INFO in [log.py:128]: SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = %(table_schema)s AND table_name = %(table_name)s
+[2023-10-09 14:51:43,852] INFO in [log.py:128]: [generated in 0.00027s] {'table_schema': 'shenlicaiwu', 'table_name': 'user'}
+[2023-10-09 14:51:43,854] INFO in [log.py:128]: SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = %(table_schema)s AND table_name = %(table_name)s
+[2023-10-09 14:51:43,854] INFO in [log.py:128]: [cached since 0.00184s ago] {'table_schema': 'shenlicaiwu', 'table_name': 'roles'}
+[2023-10-09 14:51:43,855] INFO in [log.py:128]: SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = %(table_schema)s AND table_name = %(table_name)s
+[2023-10-09 14:51:43,855] INFO in [log.py:128]: [cached since 0.002842s ago] {'table_schema': 'shenlicaiwu', 'table_name': 'departments'}
+[2023-10-09 14:51:43,856] INFO in [log.py:128]: 
+CREATE TABLE departments (
+	create_at DATETIME, 
+	update_at DATETIME, 
+	id BIGINT NOT NULL AUTO_INCREMENT, 
+	name VARCHAR(256), 
+	idlink VARCHAR(1024), 
+	parent BIGINT, 
+	pname VARCHAR(512), 
+	PRIMARY KEY (id)
+)
+
+
+[2023-10-09 14:51:43,856] INFO in [log.py:128]: [no key 0.00059s] {}
+[2023-10-09 14:51:43,871] INFO in [log.py:128]: CREATE INDEX ix_departments_parent ON departments (parent)
+[2023-10-09 14:51:43,872] INFO in [log.py:128]: [no key 0.00024s] {}
+[2023-10-09 14:51:43,887] INFO in [log.py:128]: COMMIT
+[2023-10-09 15:01:43,215] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-09 15:01:43,217] INFO in [log.py:128]: SELECT user.id AS user_id, user.username AS user_username, user.phone AS user_phone, user.password_hash AS user_password_hash, user.id_card_num AS user_id_card_num, user.email AS user_email, user.`role` AS user_role, user.dept AS user_dept, user.create_at AS user_create_at, user.update_at AS user_update_at 
+FROM user
+[2023-10-09 15:01:43,218] INFO in [log.py:128]: [generated in 0.00107s] {}
+[2023-10-09 15:01:57,807] INFO in [log.py:128]: SELECT user.id AS user_id, user.username AS user_username, user.phone AS user_phone, user.password_hash AS user_password_hash, user.id_card_num AS user_id_card_num, user.email AS user_email, user.`role` AS user_role, user.dept AS user_dept, user.create_at AS user_create_at, user.update_at AS user_update_at 
+FROM user 
+ LIMIT %(param_1)s
+[2023-10-09 15:01:57,807] INFO in [log.py:128]: [generated in 0.00083s] {'param_1': 1}
+[2023-10-09 15:02:04,382] INFO in [log.py:128]: SELECT user.id AS user_id, user.username AS user_username, user.phone AS user_phone, user.password_hash AS user_password_hash, user.id_card_num AS user_id_card_num, user.email AS user_email, user.`role` AS user_role, user.dept AS user_dept, user.create_at AS user_create_at, user.update_at AS user_update_at 
+FROM user 
+ LIMIT %(param_1)s
+[2023-10-09 15:02:04,383] INFO in [log.py:128]: [cached since 6.576s ago] {'param_1': 1}
+[2023-10-09 15:02:24,112] INFO in [log.py:128]: UPDATE user SET password_hash=%(password_hash)s, update_at=%(update_at)s WHERE user.id = %(user_id)s
+[2023-10-09 15:02:24,113] INFO in [log.py:128]: [generated in 0.00052s] {'password_hash': 'pbkdf2:sha256:260000$EDJszmR5iAmJuteN$9b054cb0783eb6b74d5431064e33eb3296915211adcda910095217777bd13dac', 'update_at': datetime.datetime(2023, 10, 9, 15, 2, 24, 112164), 'user_id': 7110024143076200451}
+[2023-10-09 15:02:24,113] INFO in [log.py:128]: COMMIT
+[2023-10-09 15:07:07,430] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:07:07,854] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:07:07,858] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:07:07,880] INFO in [_internal.py:225]:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:07:39,829] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:07:39] "[33mGET / HTTP/1.1[0m" 404 -
+[2023-10-09 15:07:40,223] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:07:40] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+[2023-10-09 15:08:48,156] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:08:48,585] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:08:48,587] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:08:48,607] INFO in [_internal.py:225]:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:09:29,736] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:09:30,199] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:09:30,202] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:09:30,223] INFO in [_internal.py:225]:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:09:40,814] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:09:40] "[33mGET / HTTP/1.1[0m" 404 -
+[2023-10-09 15:09:47,553] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:09:47] "[33mGET /hello HTTP/1.1[0m" 404 -
+[2023-10-09 15:10:25,882] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:10:26,315] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:10:26,317] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:10:26,339] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 15:10:26,339] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:10:39,286] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:10:39] "[33mGET /hello HTTP/1.1[0m" 404 -
+[2023-10-09 15:10:56,758] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:10:56] "[33mGET /hello HTTP/1.1[0m" 404 -
+[2023-10-09 15:10:58,694] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:10:58] "[33mGET /hello HTTP/1.1[0m" 404 -
+[2023-10-09 15:11:12,752] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:11:12] "[33mGET / HTTP/1.1[0m" 404 -
+[2023-10-09 15:11:16,393] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:11:16] "[33mGET /hello HTTP/1.1[0m" 404 -
+[2023-10-09 15:11:46,342] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:11:46] "GET /api/v1/portal/hello HTTP/1.1" 200 -
+[2023-10-09 15:11:54,783] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:11:54] "GET /api/v1/portal/hello HTTP/1.1" 200 -
+[2023-10-09 15:14:22,031] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:14:22,470] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:14:22,475] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:14:22,498] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 15:14:22,498] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:14:26,105] INFO in [log.py:128]: SELECT DATABASE()
+[2023-10-09 15:14:26,106] INFO in [log.py:128]: [raw sql] {}
+[2023-10-09 15:14:26,106] INFO in [log.py:128]: SELECT @@sql_mode
+[2023-10-09 15:14:26,107] INFO in [log.py:128]: [raw sql] {}
+[2023-10-09 15:14:26,107] INFO in [log.py:128]: SELECT @@lower_case_table_names
+[2023-10-09 15:14:26,107] INFO in [log.py:128]: [raw sql] {}
+[2023-10-09 15:14:26,108] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-09 15:14:26,109] INFO in [log.py:128]: SELECT user.id AS user_id, user.username AS user_username, user.phone AS user_phone, user.password_hash AS user_password_hash, user.id_card_num AS user_id_card_num, user.email AS user_email, user.`role` AS user_role, user.dept AS user_dept, user.create_at AS user_create_at, user.update_at AS user_update_at 
+FROM user 
+WHERE user.phone = %(phone_1)s 
+ LIMIT %(param_1)s
+[2023-10-09 15:14:26,111] INFO in [log.py:128]: [generated in 0.00051s] {'phone_1': '18682253961', 'param_1': 1}
+[2023-10-09 15:14:26,206] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.permission AS roles_permission 
+FROM roles 
+WHERE roles.id = %(id_1)s 
+ LIMIT %(param_1)s
+[2023-10-09 15:14:26,206] INFO in [log.py:128]: [generated in 0.00077s] {'id_1': 7110024143076200448, 'param_1': 1}
+[2023-10-09 15:14:26,210] INFO in [log.py:128]: ROLLBACK
+[2023-10-09 15:14:26,211] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:14:26] "POST /api/v1/login HTTP/1.1" 200 -
+[2023-10-09 15:16:22,857] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-09 15:16:22,858] INFO in [log.py:128]: SELECT user.id AS user_id, user.username AS user_username, user.phone AS user_phone, user.password_hash AS user_password_hash, user.id_card_num AS user_id_card_num, user.email AS user_email, user.`role` AS user_role, user.dept AS user_dept, user.create_at AS user_create_at, user.update_at AS user_update_at 
+FROM user 
+WHERE user.phone = %(phone_1)s 
+ LIMIT %(param_1)s
+[2023-10-09 15:16:22,858] INFO in [log.py:128]: [cached since 116.7s ago] {'phone_1': '18682253961', 'param_1': 1}
+[2023-10-09 15:16:22,959] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.permission AS roles_permission 
+FROM roles 
+WHERE roles.id = %(id_1)s 
+ LIMIT %(param_1)s
+[2023-10-09 15:16:22,959] INFO in [log.py:128]: [cached since 116.8s ago] {'id_1': 7110024143076200448, 'param_1': 1}
+[2023-10-09 15:16:22,961] INFO in [log.py:128]: ROLLBACK
+[2023-10-09 15:16:22,962] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:16:22] "POST /api/v1/login HTTP/1.1" 200 -
+[2023-10-09 15:22:43,128] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:22:43,580] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:22:43,582] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:22:43,604] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 15:22:43,604] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:23:25,737] INFO in [log.py:128]: SELECT DATABASE()
+[2023-10-09 15:23:25,737] INFO in [log.py:128]: [raw sql] {}
+[2023-10-09 15:23:25,738] INFO in [log.py:128]: SELECT @@sql_mode
+[2023-10-09 15:23:25,738] INFO in [log.py:128]: [raw sql] {}
+[2023-10-09 15:23:25,738] INFO in [log.py:128]: SELECT @@lower_case_table_names
+[2023-10-09 15:23:25,739] INFO in [log.py:128]: [raw sql] {}
+[2023-10-09 15:23:25,739] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-09 15:23:25,741] INFO in [log.py:128]: SELECT departments.create_at AS departments_create_at, departments.update_at AS departments_update_at, departments.id AS departments_id, departments.name AS departments_name, departments.idlink AS departments_idlink, departments.parent AS departments_parent, departments.pname AS departments_pname 
+FROM departments 
+WHERE departments.id = %(id_1)s 
+ LIMIT %(param_1)s
+[2023-10-09 15:23:25,741] INFO in [log.py:128]: [generated in 0.00046s] {'id_1': 7110024143076200452, 'param_1': 1}
+[2023-10-09 15:23:25,743] INFO in [log.py:128]: SELECT departments.create_at AS departments_create_at, departments.update_at AS departments_update_at, departments.id AS departments_id, departments.name AS departments_name, departments.idlink AS departments_idlink, departments.parent AS departments_parent, departments.pname AS departments_pname 
+FROM departments 
+WHERE departments.parent = %(parent_1)s
+[2023-10-09 15:23:25,743] INFO in [log.py:128]: [generated in 0.00042s] {'parent_1': 7110024143076200452}
+[2023-10-09 15:23:25,744] INFO in [log.py:128]: ROLLBACK
+[2023-10-09 15:23:25,744] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:23:25] "POST /api/v1/querydept HTTP/1.1" 200 -
+[2023-10-09 15:23:38,989] INFO in [_internal.py:225]:  * Detected change in 'C:\\Users\\siran\\PycharmProjects\\shenlicaiwu\\shenlibackend\\api_1_0\\department.py', reloading
+[2023-10-09 15:23:39,024] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:23:39,465] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:23:39,467] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:23:39,491] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 15:23:39,491] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:23:43,328] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:23:43] "[31m[1mPOST /api/v1/querydept HTTP/1.1[0m" 401 -
+[2023-10-09 15:30:48,660] INFO in [_internal.py:225]:  * Detected change in 'C:\\Users\\siran\\PycharmProjects\\shenlicaiwu\\shenlibackend\\utils\\roleutil.py', reloading
+[2023-10-09 15:30:48,693] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:30:49,147] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:30:49,149] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:30:49,173] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 15:30:49,173] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:30:52,048] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:30:52] "[31m[1mPOST /api/v1/querydept HTTP/1.1[0m" 401 -
+[2023-10-09 15:30:54,256] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:30:54] "[31m[1mPOST /api/v1/querydept HTTP/1.1[0m" 401 -
+[2023-10-09 15:31:18,890] INFO in [_internal.py:225]:  * Detected change in 'C:\\Users\\siran\\PycharmProjects\\shenlicaiwu\\shenlibackend\\utils\\roleutil.py', reloading
+[2023-10-09 15:31:18,969] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:31:19,545] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:31:19,547] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:31:19,570] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 15:31:19,570] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:31:35,048] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:31:35,499] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:31:35,501] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:31:35,525] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 15:31:35,525] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:31:40,442] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:31:40] "[31m[1mPOST /api/v1/querydept HTTP/1.1[0m" 401 -
+[2023-10-09 15:32:31,799] INFO in [_internal.py:225]:  * Detected change in 'C:\\Users\\siran\\PycharmProjects\\shenlicaiwu\\shenlibackend\\utils\\roleutil.py', reloading
+[2023-10-09 15:32:31,829] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:32:32,252] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:32:32,254] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:32:32,276] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 15:32:32,277] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:33:51,842] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:33:51] "[31m[1mPOST /api/v1/querydept HTTP/1.1[0m" 401 -
+[2023-10-09 15:35:21,208] INFO in [_internal.py:225]:  * Detected change in 'C:\\Users\\siran\\PycharmProjects\\shenlicaiwu\\shenlibackend\\utils\\roleutil.py', reloading
+[2023-10-09 15:35:21,240] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:35:21,676] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:35:21,678] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:35:21,699] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 15:35:21,700] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:35:25,096] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:35:25] "[31m[1mPOST /api/v1/querydept HTTP/1.1[0m" 401 -
+[2023-10-09 15:35:48,209] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:35:48] "[31m[1mPOST /api/v1/querydept HTTP/1.1[0m" 401 -
+[2023-10-09 15:35:50,631] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:35:50] "[31m[1mPOST /api/v1/querydept HTTP/1.1[0m" 401 -
+[2023-10-09 15:36:40,599] INFO in [_internal.py:225]:  * Detected change in 'C:\\Users\\siran\\PycharmProjects\\shenlicaiwu\\shenlibackend\\api_1_0\\department.py', reloading
+[2023-10-09 15:36:40,628] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:36:41,069] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:36:41,071] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:36:41,093] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 15:36:41,093] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:36:44,341] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:36:44] "[35m[1mPOST /api/v1/querydept HTTP/1.1[0m" 500 -
+[2023-10-09 15:36:51,340] INFO in [_internal.py:225]:  * Detected change in 'C:\\Users\\siran\\PycharmProjects\\shenlicaiwu\\shenlibackend\\api_1_0\\department.py', reloading
+[2023-10-09 15:36:51,371] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:36:51,799] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:36:51,801] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:36:51,822] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 15:36:51,823] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:36:56,004] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:36:56] "[31m[1mPOST /api/v1/querydept HTTP/1.1[0m" 401 -
+[2023-10-09 15:39:19,294] INFO in [_internal.py:225]:  * Detected change in 'C:\\Users\\siran\\PycharmProjects\\shenlicaiwu\\shenlibackend\\api_1_0\\department.py', reloading
+[2023-10-09 15:39:19,339] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:39:19,804] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:39:19,807] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:39:19,831] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 15:39:19,831] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:39:21,742] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:39:21] "POST /api/v1/querydept HTTP/1.1" 200 -
+[2023-10-09 15:39:43,467] INFO in [_internal.py:225]:  * Detected change in 'C:\\Users\\siran\\PycharmProjects\\shenlicaiwu\\shenlibackend\\api_1_0\\department.py', reloading
+[2023-10-09 15:39:43,503] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:40:04,164] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:40:04,611] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:40:04,614] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:40:04,636] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 15:40:04,636] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:40:07,075] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:40:07] "[35m[1mPOST /api/v1/querydept HTTP/1.1[0m" 500 -
+[2023-10-09 15:40:39,456] INFO in [_internal.py:225]:  * Detected change in 'C:\\Users\\siran\\PycharmProjects\\shenlicaiwu\\shenlibackend\\utils\\roleutil.py', reloading
+[2023-10-09 15:40:39,493] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:40:39,944] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:40:39,946] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:40:39,970] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 15:40:39,970] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:40:42,865] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:40:42] "[35m[1mPOST /api/v1/querydept HTTP/1.1[0m" 500 -
+[2023-10-09 15:40:54,231] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:40:54,652] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:40:54,654] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:40:54,676] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 15:40:54,676] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:41:05,936] INFO in [_internal.py:225]:  * Detected change in 'C:\\Users\\siran\\PycharmProjects\\shenlicaiwu\\shenlibackend\\utils\\roleutil.py', reloading
+[2023-10-09 15:41:06,082] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:41:06,709] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:41:06,711] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:41:06,735] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 15:41:06,735] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:42:07,916] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:42:07] "[35m[1mPOST /api/v1/querydept HTTP/1.1[0m" 500 -
+[2023-10-09 15:42:25,490] INFO in [_internal.py:225]:  * Detected change in 'C:\\Users\\siran\\PycharmProjects\\shenlicaiwu\\shenlibackend\\utils\\roleutil.py', reloading
+[2023-10-09 15:42:25,533] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:42:26,257] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:42:26,260] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:42:26,285] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 15:42:26,286] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:42:28,743] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:42:28] "[35m[1mPOST /api/v1/querydept HTTP/1.1[0m" 500 -
+[2023-10-09 15:43:16,488] INFO in [_internal.py:225]:  * Detected change in 'C:\\Users\\siran\\PycharmProjects\\shenlicaiwu\\shenlibackend\\api_1_0\\users.py', reloading
+[2023-10-09 15:43:16,541] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:43:17,035] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:43:17,043] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:43:17,116] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 15:43:17,117] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:43:36,178] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:43:36] "[35m[1mGET /api/v1/hello HTTP/1.1[0m" 500 -
+[2023-10-09 15:47:42,419] INFO in [_internal.py:225]:  * Detected change in 'C:\\Users\\siran\\PycharmProjects\\shenlicaiwu\\shenlibackend\\api_1_0\\users.py', reloading
+[2023-10-09 15:47:42,465] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:47:43,367] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:47:43,369] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:47:43,397] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 15:47:43,397] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:47:43,668] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:47:43] "[35m[1mGET /api/v1/hello HTTP/1.1[0m" 500 -
+[2023-10-09 15:47:59,130] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:47:59] "[35m[1mGET /api/v1/hello HTTP/1.1[0m" 500 -
+[2023-10-09 15:48:03,915] INFO in [_internal.py:225]:  * Detected change in 'C:\\Users\\siran\\PycharmProjects\\shenlicaiwu\\shenlibackend\\api_1_0\\users.py', reloading
+[2023-10-09 15:48:03,953] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:48:04,589] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:48:04,592] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:48:04,621] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 15:48:04,621] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:48:04,858] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:48:04] "[35m[1mGET /api/v1/hello HTTP/1.1[0m" 500 -
+[2023-10-09 15:48:47,676] INFO in [_internal.py:225]:  * Detected change in 'C:\\Users\\siran\\PycharmProjects\\shenlicaiwu\\shenlibackend\\api_1_0\\users.py', reloading
+[2023-10-09 15:48:47,751] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:48:48,237] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:48:48,239] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:48:48,309] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 15:48:48,310] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:48:49,407] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:48:49] "[35m[1mGET /api/v1/hello HTTP/1.1[0m" 500 -
+[2023-10-09 15:48:54,548] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:48:54] "[35m[1mGET /api/v1/hello HTTP/1.1[0m" 500 -
+[2023-10-09 15:50:39,949] INFO in [_internal.py:225]:  * Detected change in 'C:\\Users\\siran\\PycharmProjects\\shenlicaiwu\\shenlibackend\\utils\\shenliexceptions.py', reloading
+[2023-10-09 15:50:39,982] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:50:40,405] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:50:40,407] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:50:40,429] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 15:50:40,429] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:50:43,631] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:50:43] "[35m[1mGET /api/v1/hello HTTP/1.1[0m" 500 -
+[2023-10-09 15:52:47,446] INFO in [_internal.py:225]:  * Detected change in 'C:\\Users\\siran\\PycharmProjects\\shenlicaiwu\\shenlibackend\\api_1_0\\users.py', reloading
+[2023-10-09 15:52:47,486] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:53:03,684] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:53:04,110] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:53:04,112] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:53:04,133] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 15:53:04,134] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:53:06,848] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:53:06] "[35m[1mGET /api/v1/hello HTTP/1.1[0m" 500 -
+[2023-10-09 15:53:22,589] INFO in [_internal.py:225]:  * Detected change in 'C:\\Users\\siran\\PycharmProjects\\shenlicaiwu\\shenlibackend\\api_1_0\\users.py', reloading
+[2023-10-09 15:53:22,633] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:53:23,167] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:53:23,169] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:53:23,229] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 15:53:23,231] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:53:25,351] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:53:25] "GET /api/v1/hello HTTP/1.1" 200 -
+[2023-10-09 15:53:30,746] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:53:30] "GET /api/v1/hello HTTP/1.1" 200 -
+[2023-10-09 15:56:01,848] INFO in [_internal.py:225]:  * Detected change in 'C:\\Users\\siran\\PycharmProjects\\shenlicaiwu\\shenlibackend\\utils\\shenliexceptions.py', reloading
+[2023-10-09 15:56:01,883] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:56:02,518] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:56:02,520] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:56:02,567] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 15:56:02,568] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:59:35,576] INFO in [_internal.py:225]:  * Detected change in 'C:\\Users\\siran\\PycharmProjects\\shenlicaiwu\\shenlibackend\\api_1_0\\users.py', reloading
+[2023-10-09 15:59:35,618] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 15:59:36,887] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 15:59:36,890] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 15:59:36,936] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 15:59:36,936] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 15:59:37,440] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 15:59:37] "GET /api/v1/hello HTTP/1.1" 200 -
+[2023-10-09 16:03:47,816] INFO in [_internal.py:225]:  * Detected change in 'C:\\Users\\siran\\PycharmProjects\\shenlicaiwu\\shenlibackend\\utils\\roleutil.py', reloading
+[2023-10-09 16:03:47,853] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 16:03:48,778] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 16:03:48,781] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 16:03:48,819] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 16:03:48,820] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 16:03:49,695] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 16:03:49] "[35m[1mPOST /api/v1/querydept HTTP/1.1[0m" 500 -
+[2023-10-09 16:05:06,718] INFO in [_internal.py:225]:  * Detected change in 'C:\\Users\\siran\\PycharmProjects\\shenlicaiwu\\shenlibackend\\utils\\shenliexceptions.py', reloading
+[2023-10-09 16:05:06,754] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-09 16:05:07,256] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-09 16:05:07,258] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-09 16:05:07,282] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-09 16:05:07,282] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-09 16:05:08,504] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 16:05:08] "POST /api/v1/querydept HTTP/1.1" 200 -
+[2023-10-09 16:05:54,830] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 16:05:54] "POST /api/v1/querydept HTTP/1.1" 200 -
+[2023-10-09 16:06:25,698] INFO in [_internal.py:225]: 127.0.0.1 - - [09/Oct/2023 16:06:25] "GET /api/v1/hello HTTP/1.1" 200 -
+[2023-10-10 13:11:51,303] INFO in [log.py:128]: SELECT DATABASE()
+[2023-10-10 13:11:51,304] INFO in [log.py:128]: [raw sql] {}
+[2023-10-10 13:11:51,307] INFO in [log.py:128]: SELECT @@sql_mode
+[2023-10-10 13:11:51,307] INFO in [log.py:128]: [raw sql] {}
+[2023-10-10 13:11:51,308] INFO in [log.py:128]: SELECT @@lower_case_table_names
+[2023-10-10 13:11:51,308] INFO in [log.py:128]: [raw sql] {}
+[2023-10-10 13:11:51,309] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-10 13:11:51,309] INFO in [log.py:128]: SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = %(table_schema)s AND table_name = %(table_name)s
+[2023-10-10 13:11:51,310] INFO in [log.py:128]: [generated in 0.00078s] {'table_schema': 'shenlicaiwu', 'table_name': 'user'}
+[2023-10-10 13:11:51,333] INFO in [log.py:128]: SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = %(table_schema)s AND table_name = %(table_name)s
+[2023-10-10 13:11:51,333] INFO in [log.py:128]: [cached since 0.02479s ago] {'table_schema': 'shenlicaiwu', 'table_name': 'roles'}
+[2023-10-10 13:11:51,334] INFO in [log.py:128]: SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = %(table_schema)s AND table_name = %(table_name)s
+[2023-10-10 13:11:51,335] INFO in [log.py:128]: [cached since 0.02622s ago] {'table_schema': 'shenlicaiwu', 'table_name': 'departments'}
+[2023-10-10 13:11:51,336] INFO in [log.py:128]: SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = %(table_schema)s AND table_name = %(table_name)s
+[2023-10-10 13:11:51,336] INFO in [log.py:128]: [cached since 0.02775s ago] {'table_schema': 'shenlicaiwu', 'table_name': 'customer'}
+[2023-10-10 13:11:51,338] INFO in [log.py:128]: 
+CREATE TABLE customer (
+	create_at DATETIME, 
+	update_at DATETIME, 
+	id BIGINT NOT NULL AUTO_INCREMENT, 
+	name VARCHAR(255) NOT NULL, 
+	contact VARCHAR(50), 
+	phone VARCHAR(20) NOT NULL, 
+	company_type VARCHAR(50), 
+	customer_type VARCHAR(50), 
+	business_type VARCHAR(50), 
+	industry VARCHAR(50), 
+	client_progress VARCHAR(32), 
+	sales_consultant VARCHAR(64), 
+	PRIMARY KEY (id), 
+	UNIQUE (phone)
+)
+
+
+[2023-10-10 13:11:51,339] INFO in [log.py:128]: [no key 0.00082s] {}
+[2023-10-10 13:11:51,379] INFO in [log.py:128]: COMMIT
+[2023-10-10 13:42:57,976] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-10 13:42:58,415] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-10 13:42:58,418] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-10 13:42:58,446] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-10 13:42:58,446] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-10 13:43:04,981] INFO in [log.py:128]: SELECT DATABASE()
+[2023-10-10 13:43:04,981] INFO in [log.py:128]: [raw sql] {}
+[2023-10-10 13:43:04,982] INFO in [log.py:128]: SELECT @@sql_mode
+[2023-10-10 13:43:04,982] INFO in [log.py:128]: [raw sql] {}
+[2023-10-10 13:43:04,982] INFO in [log.py:128]: SELECT @@lower_case_table_names
+[2023-10-10 13:43:04,983] INFO in [log.py:128]: [raw sql] {}
+[2023-10-10 13:43:04,983] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-10 13:43:04,985] INFO in [log.py:128]: SELECT user.id AS user_id, user.username AS user_username, user.phone AS user_phone, user.password_hash AS user_password_hash, user.id_card_num AS user_id_card_num, user.email AS user_email, user.`role` AS user_role, user.dept AS user_dept, user.create_at AS user_create_at, user.update_at AS user_update_at 
+FROM user 
+WHERE user.phone = %(phone_1)s 
+ LIMIT %(param_1)s
+[2023-10-10 13:43:04,985] INFO in [log.py:128]: [generated in 0.00044s] {'phone_1': '18682253961', 'param_1': 1}
+[2023-10-10 13:43:05,087] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.permission AS roles_permission 
+FROM roles 
+WHERE roles.id = %(id_1)s 
+ LIMIT %(param_1)s
+[2023-10-10 13:43:05,087] INFO in [log.py:128]: [generated in 0.00064s] {'id_1': 7110024143076200448, 'param_1': 1}
+[2023-10-10 13:43:05,090] INFO in [log.py:128]: ROLLBACK
+[2023-10-10 13:43:05,091] INFO in [_internal.py:225]: 127.0.0.1 - - [10/Oct/2023 13:43:05] "POST /api/v1/login HTTP/1.1" 200 -
