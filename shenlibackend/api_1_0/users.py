@@ -61,7 +61,7 @@ def login():
     return jsonify(ret)
 
 
-@api.route("/queryuser", methods=["PODT"])
+@api.route("/userinfo", methods=["PODT"])
 @jwt_required()
 def query_user():
     request_parameter = request.get_json()
