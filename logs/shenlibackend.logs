@@ -8425,3 +8425,419 @@ FROM roles
 [2023-10-12 10:18:25,532] WARNING in [_internal.py:225]:  * Running on all addresses.
    WARNING: This is a development server. Do not use it in a production deployment.
 [2023-10-12 10:18:25,533] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-12 13:05:02,934] INFO in [log.py:128]: SELECT DATABASE()
+[2023-10-12 13:05:02,936] INFO in [log.py:128]: [raw sql] {}
+[2023-10-12 13:05:02,936] INFO in [log.py:128]: SELECT @@sql_mode
+[2023-10-12 13:05:02,937] INFO in [log.py:128]: [raw sql] {}
+[2023-10-12 13:05:02,937] INFO in [log.py:128]: SELECT @@lower_case_table_names
+[2023-10-12 13:05:02,937] INFO in [log.py:128]: [raw sql] {}
+[2023-10-12 13:05:02,938] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:05:02,940] INFO in [log.py:128]: SELECT user.create_at AS user_create_at, user.update_at AS user_update_at, user.id AS user_id, user.username AS user_username, user.phone AS user_phone, user.password_hash AS user_password_hash, user.id_card_num AS user_id_card_num, user.email AS user_email, user.`role` AS user_role, user.dept AS user_dept 
+FROM user 
+WHERE user.username LIKE %(username_1)s OR user.phone LIKE %(phone_1)s OR user.email LIKE %(email_1)s 
+ LIMIT %(param_1)s, %(param_2)s
+[2023-10-12 13:05:02,941] INFO in [log.py:128]: [generated in 0.00061s] {'username_1': '%%', 'phone_1': '%%', 'email_1': '%%', 'param_1': 0, 'param_2': 10}
+[2023-10-12 13:05:02,945] INFO in [log.py:128]: SELECT count(*) AS count_1 
+FROM (SELECT user.create_at AS user_create_at, user.update_at AS user_update_at, user.id AS user_id, user.username AS user_username, user.phone AS user_phone, user.password_hash AS user_password_hash, user.id_card_num AS user_id_card_num, user.email AS user_email, user.`role` AS user_role, user.dept AS user_dept 
+FROM user 
+WHERE user.username LIKE %(username_1)s OR user.phone LIKE %(phone_1)s OR user.email LIKE %(email_1)s) AS anon_1
+[2023-10-12 13:05:02,946] INFO in [log.py:128]: [generated in 0.00061s] {'username_1': '%%', 'phone_1': '%%', 'email_1': '%%'}
+[2023-10-12 13:05:02,947] INFO in [log.py:128]: SELECT departments.create_at AS departments_create_at, departments.update_at AS departments_update_at, departments.id AS departments_id, departments.name AS departments_name, departments.idlink AS departments_idlink, departments.parent AS departments_parent, departments.pname AS departments_pname 
+FROM departments
+[2023-10-12 13:05:02,947] INFO in [log.py:128]: [generated in 0.00030s] {}
+[2023-10-12 13:05:02,949] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles
+[2023-10-12 13:05:02,949] INFO in [log.py:128]: [generated in 0.00031s] {}
+[2023-10-12 13:05:02,951] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:05:02,952] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:05:02] "POST /api/v1/queryemployee HTTP/1.1" 200 -
+[2023-10-12 13:06:53,166] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:06:53,167] INFO in [log.py:128]: SELECT user.create_at AS user_create_at, user.update_at AS user_update_at, user.id AS user_id, user.username AS user_username, user.phone AS user_phone, user.password_hash AS user_password_hash, user.id_card_num AS user_id_card_num, user.email AS user_email, user.`role` AS user_role, user.dept AS user_dept 
+FROM user 
+WHERE user.username LIKE %(username_1)s OR user.phone LIKE %(phone_1)s OR user.email LIKE %(email_1)s 
+ LIMIT %(param_1)s, %(param_2)s
+[2023-10-12 13:06:53,169] INFO in [log.py:128]: [cached since 110.2s ago] {'username_1': '%%', 'phone_1': '%%', 'email_1': '%%', 'param_1': 0, 'param_2': 10}
+[2023-10-12 13:06:53,171] INFO in [log.py:128]: SELECT count(*) AS count_1 
+FROM (SELECT user.create_at AS user_create_at, user.update_at AS user_update_at, user.id AS user_id, user.username AS user_username, user.phone AS user_phone, user.password_hash AS user_password_hash, user.id_card_num AS user_id_card_num, user.email AS user_email, user.`role` AS user_role, user.dept AS user_dept 
+FROM user 
+WHERE user.username LIKE %(username_1)s OR user.phone LIKE %(phone_1)s OR user.email LIKE %(email_1)s) AS anon_1
+[2023-10-12 13:06:53,172] INFO in [log.py:128]: [cached since 110.2s ago] {'username_1': '%%', 'phone_1': '%%', 'email_1': '%%'}
+[2023-10-12 13:06:53,175] INFO in [log.py:128]: SELECT departments.create_at AS departments_create_at, departments.update_at AS departments_update_at, departments.id AS departments_id, departments.name AS departments_name, departments.idlink AS departments_idlink, departments.parent AS departments_parent, departments.pname AS departments_pname 
+FROM departments
+[2023-10-12 13:06:53,176] INFO in [log.py:128]: [cached since 110.2s ago] {}
+[2023-10-12 13:06:53,177] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles
+[2023-10-12 13:06:53,177] INFO in [log.py:128]: [cached since 110.2s ago] {}
+[2023-10-12 13:06:53,178] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:06:53,179] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:06:53] "POST /api/v1/queryemployee HTTP/1.1" 200 -
+[2023-10-12 13:06:57,772] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:06:57,775] INFO in [log.py:128]: SELECT departments.create_at AS departments_create_at, departments.update_at AS departments_update_at, departments.id AS departments_id, departments.name AS departments_name, departments.idlink AS departments_idlink, departments.parent AS departments_parent, departments.pname AS departments_pname 
+FROM departments 
+WHERE departments.id = %(id_1)s 
+ LIMIT %(param_1)s
+[2023-10-12 13:06:57,776] INFO in [log.py:128]: [generated in 0.00166s] {'id_1': 7110024143076200452, 'param_1': 1}
+[2023-10-12 13:06:57,781] INFO in [log.py:128]: SELECT departments.create_at AS departments_create_at, departments.update_at AS departments_update_at, departments.id AS departments_id, departments.name AS departments_name, departments.idlink AS departments_idlink, departments.parent AS departments_parent, departments.pname AS departments_pname 
+FROM departments 
+WHERE departments.parent = %(parent_1)s
+[2023-10-12 13:06:57,782] INFO in [log.py:128]: [generated in 0.00066s] {'parent_1': '7110024143076200452'}
+[2023-10-12 13:06:57,784] INFO in [log.py:128]: SELECT departments.create_at AS departments_create_at, departments.update_at AS departments_update_at, departments.id AS departments_id, departments.name AS departments_name, departments.idlink AS departments_idlink, departments.parent AS departments_parent, departments.pname AS departments_pname 
+FROM departments 
+WHERE departments.parent = %(parent_1)s
+[2023-10-12 13:06:57,784] INFO in [log.py:128]: [cached since 0.002736s ago] {'parent_1': '7110676188011565056'}
+[2023-10-12 13:06:57,785] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:06:57,786] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:06:57] "POST /api/v1/querydept HTTP/1.1" 200 -
+[2023-10-12 13:06:57,786] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:06:57,787] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles
+[2023-10-12 13:06:57,787] INFO in [log.py:128]: [cached since 114.8s ago] {}
+[2023-10-12 13:06:57,788] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:06:57,789] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:06:57] "POST /api/v1/queryrole HTTP/1.1" 200 -
+[2023-10-12 13:09:50,388] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:09:50,389] INFO in [log.py:128]: SELECT departments.create_at AS departments_create_at, departments.update_at AS departments_update_at, departments.id AS departments_id, departments.name AS departments_name, departments.idlink AS departments_idlink, departments.parent AS departments_parent, departments.pname AS departments_pname 
+FROM departments 
+WHERE departments.id = %(id_1)s 
+ LIMIT %(param_1)s
+[2023-10-12 13:09:50,389] INFO in [log.py:128]: [cached since 172.6s ago] {'id_1': 7110024143076200452, 'param_1': 1}
+[2023-10-12 13:09:50,390] INFO in [log.py:128]: SELECT departments.create_at AS departments_create_at, departments.update_at AS departments_update_at, departments.id AS departments_id, departments.name AS departments_name, departments.idlink AS departments_idlink, departments.parent AS departments_parent, departments.pname AS departments_pname 
+FROM departments 
+WHERE departments.parent = %(parent_1)s
+[2023-10-12 13:09:50,392] INFO in [log.py:128]: [cached since 172.6s ago] {'parent_1': '7110024143076200452'}
+[2023-10-12 13:09:50,392] INFO in [log.py:128]: SELECT departments.create_at AS departments_create_at, departments.update_at AS departments_update_at, departments.id AS departments_id, departments.name AS departments_name, departments.idlink AS departments_idlink, departments.parent AS departments_parent, departments.pname AS departments_pname 
+FROM departments 
+WHERE departments.parent = %(parent_1)s
+[2023-10-12 13:09:50,393] INFO in [log.py:128]: [cached since 172.6s ago] {'parent_1': '7110676188011565056'}
+[2023-10-12 13:09:50,394] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:09:50,395] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:09:50] "POST /api/v1/querydept HTTP/1.1" 200 -
+[2023-10-12 13:09:50,395] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:09:50,396] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles
+[2023-10-12 13:09:50,396] INFO in [log.py:128]: [cached since 287.4s ago] {}
+[2023-10-12 13:09:50,397] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:09:50,397] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:09:50] "POST /api/v1/queryrole HTTP/1.1" 200 -
+[2023-10-12 13:09:50,594] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:09:50,595] INFO in [log.py:128]: SELECT departments.create_at AS departments_create_at, departments.update_at AS departments_update_at, departments.id AS departments_id, departments.name AS departments_name, departments.idlink AS departments_idlink, departments.parent AS departments_parent, departments.pname AS departments_pname 
+FROM departments 
+WHERE departments.id = %(id_1)s 
+ LIMIT %(param_1)s
+[2023-10-12 13:09:50,597] INFO in [log.py:128]: [cached since 172.8s ago] {'id_1': 7110024143076200452, 'param_1': 1}
+[2023-10-12 13:09:50,600] INFO in [log.py:128]: SELECT departments.create_at AS departments_create_at, departments.update_at AS departments_update_at, departments.id AS departments_id, departments.name AS departments_name, departments.idlink AS departments_idlink, departments.parent AS departments_parent, departments.pname AS departments_pname 
+FROM departments 
+WHERE departments.parent = %(parent_1)s
+[2023-10-12 13:09:50,601] INFO in [log.py:128]: [cached since 172.8s ago] {'parent_1': '7110024143076200452'}
+[2023-10-12 13:09:50,603] INFO in [log.py:128]: SELECT departments.create_at AS departments_create_at, departments.update_at AS departments_update_at, departments.id AS departments_id, departments.name AS departments_name, departments.idlink AS departments_idlink, departments.parent AS departments_parent, departments.pname AS departments_pname 
+FROM departments 
+WHERE departments.parent = %(parent_1)s
+[2023-10-12 13:09:50,604] INFO in [log.py:128]: [cached since 172.8s ago] {'parent_1': '7110676188011565056'}
+[2023-10-12 13:09:50,606] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:09:50,607] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:09:50] "POST /api/v1/querydept HTTP/1.1" 200 -
+[2023-10-12 13:09:50,607] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:09:50,608] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles
+[2023-10-12 13:09:50,608] INFO in [log.py:128]: [cached since 287.7s ago] {}
+[2023-10-12 13:09:50,609] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:09:50,610] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:09:50] "POST /api/v1/queryrole HTTP/1.1" 200 -
+[2023-10-12 13:15:52,232] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:15:52,234] INFO in [log.py:128]: SELECT user.create_at AS user_create_at, user.update_at AS user_update_at, user.id AS user_id, user.username AS user_username, user.phone AS user_phone, user.password_hash AS user_password_hash, user.id_card_num AS user_id_card_num, user.email AS user_email, user.`role` AS user_role, user.dept AS user_dept 
+FROM user 
+WHERE user.username LIKE %(username_1)s OR user.phone LIKE %(phone_1)s OR user.email LIKE %(email_1)s 
+ LIMIT %(param_1)s, %(param_2)s
+[2023-10-12 13:15:52,235] INFO in [log.py:128]: [cached since 649.3s ago] {'username_1': '%%', 'phone_1': '%%', 'email_1': '%%', 'param_1': 0, 'param_2': 10}
+[2023-10-12 13:15:52,241] INFO in [log.py:128]: SELECT count(*) AS count_1 
+FROM (SELECT user.create_at AS user_create_at, user.update_at AS user_update_at, user.id AS user_id, user.username AS user_username, user.phone AS user_phone, user.password_hash AS user_password_hash, user.id_card_num AS user_id_card_num, user.email AS user_email, user.`role` AS user_role, user.dept AS user_dept 
+FROM user 
+WHERE user.username LIKE %(username_1)s OR user.phone LIKE %(phone_1)s OR user.email LIKE %(email_1)s) AS anon_1
+[2023-10-12 13:15:52,242] INFO in [log.py:128]: [cached since 649.3s ago] {'username_1': '%%', 'phone_1': '%%', 'email_1': '%%'}
+[2023-10-12 13:15:52,243] INFO in [log.py:128]: SELECT departments.create_at AS departments_create_at, departments.update_at AS departments_update_at, departments.id AS departments_id, departments.name AS departments_name, departments.idlink AS departments_idlink, departments.parent AS departments_parent, departments.pname AS departments_pname 
+FROM departments
+[2023-10-12 13:15:52,244] INFO in [log.py:128]: [cached since 649.3s ago] {}
+[2023-10-12 13:15:52,244] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles
+[2023-10-12 13:15:52,245] INFO in [log.py:128]: [cached since 649.3s ago] {}
+[2023-10-12 13:15:52,246] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:15:52,246] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:15:52] "POST /api/v1/queryemployee HTTP/1.1" 200 -
+[2023-10-12 13:15:55,237] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:15:55,238] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles
+[2023-10-12 13:15:55,240] INFO in [log.py:128]: [cached since 652.3s ago] {}
+[2023-10-12 13:15:55,244] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:15:55,246] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:15:55] "POST /api/v1/queryrole HTTP/1.1" 200 -
+[2023-10-12 13:16:21,764] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:16:21,765] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles
+[2023-10-12 13:16:21,766] INFO in [log.py:128]: [cached since 678.8s ago] {}
+[2023-10-12 13:16:21,769] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:16:21,771] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:16:21] "POST /api/v1/queryrole HTTP/1.1" 200 -
+[2023-10-12 13:18:24,341] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:18:24,342] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles
+[2023-10-12 13:18:24,344] INFO in [log.py:128]: [cached since 801.4s ago] {}
+[2023-10-12 13:18:24,348] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:18:24,350] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:18:24] "POST /api/v1/queryrole HTTP/1.1" 200 -
+[2023-10-12 13:20:46,718] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:20:46,719] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles
+[2023-10-12 13:20:46,720] INFO in [log.py:128]: [cached since 943.8s ago] {}
+[2023-10-12 13:20:46,724] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:20:46,725] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:20:46] "POST /api/v1/queryrole HTTP/1.1" 200 -
+[2023-10-12 13:21:40,346] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:21:40,346] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles
+[2023-10-12 13:21:40,347] INFO in [log.py:128]: [cached since 997.4s ago] {}
+[2023-10-12 13:21:40,348] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:21:40,349] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:21:40] "POST /api/v1/queryrole HTTP/1.1" 200 -
+[2023-10-12 13:21:47,197] INFO in [_internal.py:225]:  * Detected change in 'C:\\Users\\siran\\PycharmProjects\\shenlicaiwu\\shenlibackend\\api_1_0\\users.py', reloading
+[2023-10-12 13:21:47,269] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-12 13:21:48,637] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-12 13:21:48,639] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-12 13:21:48,664] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-12 13:21:48,664] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-12 13:24:20,553] INFO in [_internal.py:225]:  * Detected change in 'C:\\Users\\siran\\PycharmProjects\\shenlicaiwu\\shenlibackend\\api_1_0\\users.py', reloading
+[2023-10-12 13:24:20,612] INFO in [_internal.py:225]:  * Restarting with stat
+[2023-10-12 13:24:21,178] WARNING in [_internal.py:225]:  * Debugger is active!
+[2023-10-12 13:24:21,180] INFO in [_internal.py:225]:  * Debugger PIN: 110-108-649
+[2023-10-12 13:24:21,238] WARNING in [_internal.py:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[2023-10-12 13:24:21,239] INFO in [_internal.py:225]:  * Running on http://192.168.3.33:5000/ (Press CTRL+C to quit)
+[2023-10-12 13:24:51,101] INFO in [log.py:128]: SELECT DATABASE()
+[2023-10-12 13:24:51,102] INFO in [log.py:128]: [raw sql] {}
+[2023-10-12 13:24:51,102] INFO in [log.py:128]: SELECT @@sql_mode
+[2023-10-12 13:24:51,103] INFO in [log.py:128]: [raw sql] {}
+[2023-10-12 13:24:51,103] INFO in [log.py:128]: SELECT @@lower_case_table_names
+[2023-10-12 13:24:51,103] INFO in [log.py:128]: [raw sql] {}
+[2023-10-12 13:24:51,104] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:24:51,106] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles 
+WHERE roles.dispname LIKE %(dispname_1)s 
+ LIMIT %(param_1)s, %(param_2)s
+[2023-10-12 13:24:51,107] INFO in [log.py:128]: [generated in 0.00073s] {'dispname_1': '%%', 'param_1': 0, 'param_2': 999}
+[2023-10-12 13:24:51,110] INFO in [log.py:128]: SELECT count(*) AS count_1 
+FROM (SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles 
+WHERE roles.dispname LIKE %(dispname_1)s) AS anon_1
+[2023-10-12 13:24:51,111] INFO in [log.py:128]: [generated in 0.00042s] {'dispname_1': '%%'}
+[2023-10-12 13:24:51,112] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:24:51,112] INFO in [_internal.py:225]: 192.168.3.33 - - [12/Oct/2023 13:24:51] "POST /api/v1/queryrole HTTP/1.1" 200 -
+[2023-10-12 13:28:52,702] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:28:52,703] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles 
+WHERE roles.dispname LIKE %(dispname_1)s 
+ LIMIT %(param_1)s, %(param_2)s
+[2023-10-12 13:28:52,705] INFO in [log.py:128]: [cached since 241.6s ago] {'dispname_1': '%%', 'param_1': 0, 'param_2': 10}
+[2023-10-12 13:28:52,708] INFO in [log.py:128]: SELECT count(*) AS count_1 
+FROM (SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles 
+WHERE roles.dispname LIKE %(dispname_1)s) AS anon_1
+[2023-10-12 13:28:52,709] INFO in [log.py:128]: [cached since 241.6s ago] {'dispname_1': '%%'}
+[2023-10-12 13:28:52,712] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:28:52,713] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:28:52] "POST /api/v1/queryrole HTTP/1.1" 200 -
+[2023-10-12 13:29:13,046] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:29:13,047] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles 
+WHERE roles.dispname LIKE %(dispname_1)s 
+ LIMIT %(param_1)s, %(param_2)s
+[2023-10-12 13:29:13,049] INFO in [log.py:128]: [cached since 261.9s ago] {'dispname_1': '%%', 'param_1': 0, 'param_2': 10}
+[2023-10-12 13:29:13,052] INFO in [log.py:128]: SELECT count(*) AS count_1 
+FROM (SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles 
+WHERE roles.dispname LIKE %(dispname_1)s) AS anon_1
+[2023-10-12 13:29:13,053] INFO in [log.py:128]: [cached since 261.9s ago] {'dispname_1': '%%'}
+[2023-10-12 13:29:13,055] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:29:13,056] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:29:13] "POST /api/v1/queryrole HTTP/1.1" 200 -
+[2023-10-12 13:29:17,937] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:29:17,941] INFO in [log.py:128]: SELECT user.create_at AS user_create_at, user.update_at AS user_update_at, user.id AS user_id, user.username AS user_username, user.phone AS user_phone, user.password_hash AS user_password_hash, user.id_card_num AS user_id_card_num, user.email AS user_email, user.`role` AS user_role, user.dept AS user_dept 
+FROM user 
+WHERE user.username LIKE %(username_1)s OR user.phone LIKE %(phone_1)s OR user.email LIKE %(email_1)s 
+ LIMIT %(param_1)s, %(param_2)s
+[2023-10-12 13:29:17,943] INFO in [log.py:128]: [generated in 0.00155s] {'username_1': '%%', 'phone_1': '%%', 'email_1': '%%', 'param_1': 0, 'param_2': 10}
+[2023-10-12 13:29:17,949] INFO in [log.py:128]: SELECT count(*) AS count_1 
+FROM (SELECT user.create_at AS user_create_at, user.update_at AS user_update_at, user.id AS user_id, user.username AS user_username, user.phone AS user_phone, user.password_hash AS user_password_hash, user.id_card_num AS user_id_card_num, user.email AS user_email, user.`role` AS user_role, user.dept AS user_dept 
+FROM user 
+WHERE user.username LIKE %(username_1)s OR user.phone LIKE %(phone_1)s OR user.email LIKE %(email_1)s) AS anon_1
+[2023-10-12 13:29:17,950] INFO in [log.py:128]: [generated in 0.00098s] {'username_1': '%%', 'phone_1': '%%', 'email_1': '%%'}
+[2023-10-12 13:29:17,952] INFO in [log.py:128]: SELECT departments.create_at AS departments_create_at, departments.update_at AS departments_update_at, departments.id AS departments_id, departments.name AS departments_name, departments.idlink AS departments_idlink, departments.parent AS departments_parent, departments.pname AS departments_pname 
+FROM departments
+[2023-10-12 13:29:17,953] INFO in [log.py:128]: [generated in 0.00058s] {}
+[2023-10-12 13:29:17,956] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles
+[2023-10-12 13:29:17,956] INFO in [log.py:128]: [generated in 0.00046s] {}
+[2023-10-12 13:29:17,957] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:29:17,958] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:29:17] "POST /api/v1/queryemployee HTTP/1.1" 200 -
+[2023-10-12 13:29:20,190] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:29:20,192] INFO in [log.py:128]: SELECT departments.create_at AS departments_create_at, departments.update_at AS departments_update_at, departments.id AS departments_id, departments.name AS departments_name, departments.idlink AS departments_idlink, departments.parent AS departments_parent, departments.pname AS departments_pname 
+FROM departments 
+WHERE departments.id = %(id_1)s 
+ LIMIT %(param_1)s
+[2023-10-12 13:29:20,192] INFO in [log.py:128]: [generated in 0.00056s] {'id_1': 7110024143076200452, 'param_1': 1}
+[2023-10-12 13:29:20,194] INFO in [log.py:128]: SELECT departments.create_at AS departments_create_at, departments.update_at AS departments_update_at, departments.id AS departments_id, departments.name AS departments_name, departments.idlink AS departments_idlink, departments.parent AS departments_parent, departments.pname AS departments_pname 
+FROM departments 
+WHERE departments.parent = %(parent_1)s
+[2023-10-12 13:29:20,194] INFO in [log.py:128]: [generated in 0.00056s] {'parent_1': '7110024143076200452'}
+[2023-10-12 13:29:20,196] INFO in [log.py:128]: SELECT departments.create_at AS departments_create_at, departments.update_at AS departments_update_at, departments.id AS departments_id, departments.name AS departments_name, departments.idlink AS departments_idlink, departments.parent AS departments_parent, departments.pname AS departments_pname 
+FROM departments 
+WHERE departments.parent = %(parent_1)s
+[2023-10-12 13:29:20,196] INFO in [log.py:128]: [cached since 0.002536s ago] {'parent_1': '7110676188011565056'}
+[2023-10-12 13:29:20,197] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:29:20,198] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:29:20] "POST /api/v1/querydept HTTP/1.1" 200 -
+[2023-10-12 13:29:20,223] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:29:20] "[35m[1mPOST /api/v1/queryrole HTTP/1.1[0m" 500 -
+[2023-10-12 13:30:20,962] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:30:20,964] INFO in [log.py:128]: SELECT user.create_at AS user_create_at, user.update_at AS user_update_at, user.id AS user_id, user.username AS user_username, user.phone AS user_phone, user.password_hash AS user_password_hash, user.id_card_num AS user_id_card_num, user.email AS user_email, user.`role` AS user_role, user.dept AS user_dept 
+FROM user 
+WHERE user.username LIKE %(username_1)s OR user.phone LIKE %(phone_1)s OR user.email LIKE %(email_1)s 
+ LIMIT %(param_1)s, %(param_2)s
+[2023-10-12 13:30:20,965] INFO in [log.py:128]: [cached since 63.02s ago] {'username_1': '%%', 'phone_1': '%%', 'email_1': '%%', 'param_1': 0, 'param_2': 10}
+[2023-10-12 13:30:20,969] INFO in [log.py:128]: SELECT count(*) AS count_1 
+FROM (SELECT user.create_at AS user_create_at, user.update_at AS user_update_at, user.id AS user_id, user.username AS user_username, user.phone AS user_phone, user.password_hash AS user_password_hash, user.id_card_num AS user_id_card_num, user.email AS user_email, user.`role` AS user_role, user.dept AS user_dept 
+FROM user 
+WHERE user.username LIKE %(username_1)s OR user.phone LIKE %(phone_1)s OR user.email LIKE %(email_1)s) AS anon_1
+[2023-10-12 13:30:20,970] INFO in [log.py:128]: [cached since 63.02s ago] {'username_1': '%%', 'phone_1': '%%', 'email_1': '%%'}
+[2023-10-12 13:30:20,972] INFO in [log.py:128]: SELECT departments.create_at AS departments_create_at, departments.update_at AS departments_update_at, departments.id AS departments_id, departments.name AS departments_name, departments.idlink AS departments_idlink, departments.parent AS departments_parent, departments.pname AS departments_pname 
+FROM departments
+[2023-10-12 13:30:20,973] INFO in [log.py:128]: [cached since 63.02s ago] {}
+[2023-10-12 13:30:20,974] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles
+[2023-10-12 13:30:20,975] INFO in [log.py:128]: [cached since 63.02s ago] {}
+[2023-10-12 13:30:20,976] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:30:20,977] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:30:20] "POST /api/v1/queryemployee HTTP/1.1" 200 -
+[2023-10-12 13:30:23,073] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:30:23,073] INFO in [log.py:128]: SELECT departments.create_at AS departments_create_at, departments.update_at AS departments_update_at, departments.id AS departments_id, departments.name AS departments_name, departments.idlink AS departments_idlink, departments.parent AS departments_parent, departments.pname AS departments_pname 
+FROM departments 
+WHERE departments.id = %(id_1)s 
+ LIMIT %(param_1)s
+[2023-10-12 13:30:23,074] INFO in [log.py:128]: [cached since 62.88s ago] {'id_1': 7110024143076200452, 'param_1': 1}
+[2023-10-12 13:30:23,075] INFO in [log.py:128]: SELECT departments.create_at AS departments_create_at, departments.update_at AS departments_update_at, departments.id AS departments_id, departments.name AS departments_name, departments.idlink AS departments_idlink, departments.parent AS departments_parent, departments.pname AS departments_pname 
+FROM departments 
+WHERE departments.parent = %(parent_1)s
+[2023-10-12 13:30:23,076] INFO in [log.py:128]: [cached since 62.88s ago] {'parent_1': '7110024143076200452'}
+[2023-10-12 13:30:23,077] INFO in [log.py:128]: SELECT departments.create_at AS departments_create_at, departments.update_at AS departments_update_at, departments.id AS departments_id, departments.name AS departments_name, departments.idlink AS departments_idlink, departments.parent AS departments_parent, departments.pname AS departments_pname 
+FROM departments 
+WHERE departments.parent = %(parent_1)s
+[2023-10-12 13:30:23,078] INFO in [log.py:128]: [cached since 62.88s ago] {'parent_1': '7110676188011565056'}
+[2023-10-12 13:30:23,079] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:30:23,079] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:30:23] "POST /api/v1/querydept HTTP/1.1" 200 -
+[2023-10-12 13:30:23,087] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:30:23] "[35m[1mPOST /api/v1/queryrole HTTP/1.1[0m" 500 -
+[2023-10-12 13:30:37,580] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:30:37,582] INFO in [log.py:128]: SELECT user.create_at AS user_create_at, user.update_at AS user_update_at, user.id AS user_id, user.username AS user_username, user.phone AS user_phone, user.password_hash AS user_password_hash, user.id_card_num AS user_id_card_num, user.email AS user_email, user.`role` AS user_role, user.dept AS user_dept 
+FROM user 
+WHERE user.username LIKE %(username_1)s OR user.phone LIKE %(phone_1)s OR user.email LIKE %(email_1)s 
+ LIMIT %(param_1)s, %(param_2)s
+[2023-10-12 13:30:37,583] INFO in [log.py:128]: [cached since 79.64s ago] {'username_1': '%%', 'phone_1': '%%', 'email_1': '%%', 'param_1': 0, 'param_2': 10}
+[2023-10-12 13:30:37,585] INFO in [log.py:128]: SELECT count(*) AS count_1 
+FROM (SELECT user.create_at AS user_create_at, user.update_at AS user_update_at, user.id AS user_id, user.username AS user_username, user.phone AS user_phone, user.password_hash AS user_password_hash, user.id_card_num AS user_id_card_num, user.email AS user_email, user.`role` AS user_role, user.dept AS user_dept 
+FROM user 
+WHERE user.username LIKE %(username_1)s OR user.phone LIKE %(phone_1)s OR user.email LIKE %(email_1)s) AS anon_1
+[2023-10-12 13:30:37,586] INFO in [log.py:128]: [cached since 79.64s ago] {'username_1': '%%', 'phone_1': '%%', 'email_1': '%%'}
+[2023-10-12 13:30:37,588] INFO in [log.py:128]: SELECT departments.create_at AS departments_create_at, departments.update_at AS departments_update_at, departments.id AS departments_id, departments.name AS departments_name, departments.idlink AS departments_idlink, departments.parent AS departments_parent, departments.pname AS departments_pname 
+FROM departments
+[2023-10-12 13:30:37,588] INFO in [log.py:128]: [cached since 79.64s ago] {}
+[2023-10-12 13:30:37,589] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles
+[2023-10-12 13:30:37,589] INFO in [log.py:128]: [cached since 79.63s ago] {}
+[2023-10-12 13:30:37,591] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:30:37,591] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:30:37] "POST /api/v1/queryemployee HTTP/1.1" 200 -
+[2023-10-12 13:30:38,457] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:30:38,458] INFO in [log.py:128]: SELECT departments.create_at AS departments_create_at, departments.update_at AS departments_update_at, departments.id AS departments_id, departments.name AS departments_name, departments.idlink AS departments_idlink, departments.parent AS departments_parent, departments.pname AS departments_pname 
+FROM departments 
+WHERE departments.id = %(id_1)s 
+ LIMIT %(param_1)s
+[2023-10-12 13:30:38,459] INFO in [log.py:128]: [cached since 78.27s ago] {'id_1': 7110024143076200452, 'param_1': 1}
+[2023-10-12 13:30:38,462] INFO in [log.py:128]: SELECT departments.create_at AS departments_create_at, departments.update_at AS departments_update_at, departments.id AS departments_id, departments.name AS departments_name, departments.idlink AS departments_idlink, departments.parent AS departments_parent, departments.pname AS departments_pname 
+FROM departments 
+WHERE departments.parent = %(parent_1)s
+[2023-10-12 13:30:38,463] INFO in [log.py:128]: [cached since 78.27s ago] {'parent_1': '7110024143076200452'}
+[2023-10-12 13:30:38,465] INFO in [log.py:128]: SELECT departments.create_at AS departments_create_at, departments.update_at AS departments_update_at, departments.id AS departments_id, departments.name AS departments_name, departments.idlink AS departments_idlink, departments.parent AS departments_parent, departments.pname AS departments_pname 
+FROM departments 
+WHERE departments.parent = %(parent_1)s
+[2023-10-12 13:30:38,465] INFO in [log.py:128]: [cached since 78.27s ago] {'parent_1': '7110676188011565056'}
+[2023-10-12 13:30:38,466] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:30:38,468] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:30:38] "POST /api/v1/querydept HTTP/1.1" 200 -
+[2023-10-12 13:30:38,469] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:30:38,469] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles 
+WHERE roles.dispname LIKE %(dispname_1)s 
+ LIMIT %(param_1)s, %(param_2)s
+[2023-10-12 13:30:38,469] INFO in [log.py:128]: [cached since 347.4s ago] {'dispname_1': '%%', 'param_1': 0, 'param_2': 999}
+[2023-10-12 13:30:38,470] INFO in [log.py:128]: SELECT count(*) AS count_1 
+FROM (SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles 
+WHERE roles.dispname LIKE %(dispname_1)s) AS anon_1
+[2023-10-12 13:30:38,471] INFO in [log.py:128]: [cached since 347.4s ago] {'dispname_1': '%%'}
+[2023-10-12 13:30:38,471] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:30:38,472] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:30:38] "POST /api/v1/queryrole HTTP/1.1" 200 -
+[2023-10-12 13:30:47,583] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:30:47,583] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles 
+WHERE roles.dispname LIKE %(dispname_1)s 
+ LIMIT %(param_1)s, %(param_2)s
+[2023-10-12 13:30:47,584] INFO in [log.py:128]: [cached since 356.5s ago] {'dispname_1': '%%', 'param_1': 0, 'param_2': 10}
+[2023-10-12 13:30:47,584] INFO in [log.py:128]: SELECT count(*) AS count_1 
+FROM (SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles 
+WHERE roles.dispname LIKE %(dispname_1)s) AS anon_1
+[2023-10-12 13:30:47,585] INFO in [log.py:128]: [cached since 356.5s ago] {'dispname_1': '%%'}
+[2023-10-12 13:30:47,586] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:30:47,587] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:30:47] "POST /api/v1/queryrole HTTP/1.1" 200 -
+[2023-10-12 13:31:51,544] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:31:51,545] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles 
+WHERE roles.dispname LIKE %(dispname_1)s 
+ LIMIT %(param_1)s, %(param_2)s
+[2023-10-12 13:31:51,547] INFO in [log.py:128]: [cached since 420.4s ago] {'dispname_1': '%%', 'param_1': 0, 'param_2': 10}
+[2023-10-12 13:31:51,550] INFO in [log.py:128]: SELECT count(*) AS count_1 
+FROM (SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles 
+WHERE roles.dispname LIKE %(dispname_1)s) AS anon_1
+[2023-10-12 13:31:51,551] INFO in [log.py:128]: [cached since 420.4s ago] {'dispname_1': '%%'}
+[2023-10-12 13:31:51,552] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:31:51,553] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:31:51] "POST /api/v1/queryrole HTTP/1.1" 200 -
+[2023-10-12 13:34:39,525] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:34:39,526] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles 
+WHERE roles.dispname LIKE %(dispname_1)s 
+ LIMIT %(param_1)s, %(param_2)s
+[2023-10-12 13:34:39,526] INFO in [log.py:128]: [cached since 588.4s ago] {'dispname_1': '%%', 'param_1': 0, 'param_2': 10}
+[2023-10-12 13:34:39,527] INFO in [log.py:128]: SELECT count(*) AS count_1 
+FROM (SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles 
+WHERE roles.dispname LIKE %(dispname_1)s) AS anon_1
+[2023-10-12 13:34:39,528] INFO in [log.py:128]: [cached since 588.4s ago] {'dispname_1': '%%'}
+[2023-10-12 13:34:39,529] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:34:39,529] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:34:39] "POST /api/v1/queryrole HTTP/1.1" 200 -
+[2023-10-12 13:34:53,238] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:34:53,239] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles 
+WHERE roles.dispname LIKE %(dispname_1)s 
+ LIMIT %(param_1)s, %(param_2)s
+[2023-10-12 13:34:53,241] INFO in [log.py:128]: [cached since 602.1s ago] {'dispname_1': '%%', 'param_1': 0, 'param_2': 10}
+[2023-10-12 13:34:53,243] INFO in [log.py:128]: SELECT count(*) AS count_1 
+FROM (SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles 
+WHERE roles.dispname LIKE %(dispname_1)s) AS anon_1
+[2023-10-12 13:34:53,243] INFO in [log.py:128]: [cached since 602.1s ago] {'dispname_1': '%%'}
+[2023-10-12 13:34:53,245] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:34:53,245] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:34:53] "POST /api/v1/queryrole HTTP/1.1" 200 -
+[2023-10-12 13:35:06,907] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:35:06,908] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles 
+WHERE roles.dispname LIKE %(dispname_1)s 
+ LIMIT %(param_1)s, %(param_2)s
+[2023-10-12 13:35:06,909] INFO in [log.py:128]: [cached since 615.8s ago] {'dispname_1': '%%', 'param_1': 0, 'param_2': 10}
+[2023-10-12 13:35:06,911] INFO in [log.py:128]: SELECT count(*) AS count_1 
+FROM (SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles 
+WHERE roles.dispname LIKE %(dispname_1)s) AS anon_1
+[2023-10-12 13:35:06,911] INFO in [log.py:128]: [cached since 615.8s ago] {'dispname_1': '%%'}
+[2023-10-12 13:35:06,912] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:35:06,913] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:35:06] "POST /api/v1/queryrole HTTP/1.1" 200 -
+[2023-10-12 13:35:16,587] INFO in [log.py:128]: BEGIN (implicit)
+[2023-10-12 13:35:16,588] INFO in [log.py:128]: SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles 
+WHERE roles.dispname LIKE %(dispname_1)s 
+ LIMIT %(param_1)s, %(param_2)s
+[2023-10-12 13:35:16,589] INFO in [log.py:128]: [cached since 625.5s ago] {'dispname_1': '%%', 'param_1': 0, 'param_2': 10}
+[2023-10-12 13:35:16,591] INFO in [log.py:128]: SELECT count(*) AS count_1 
+FROM (SELECT roles.create_at AS roles_create_at, roles.update_at AS roles_update_at, roles.id AS roles_id, roles.name AS roles_name, roles.dispname AS roles_dispname, roles.permission AS roles_permission 
+FROM roles 
+WHERE roles.dispname LIKE %(dispname_1)s) AS anon_1
+[2023-10-12 13:35:16,592] INFO in [log.py:128]: [cached since 625.5s ago] {'dispname_1': '%%'}
+[2023-10-12 13:35:16,593] INFO in [log.py:128]: ROLLBACK
+[2023-10-12 13:35:16,594] INFO in [_internal.py:225]: 192.168.3.22 - - [12/Oct/2023 13:35:16] "POST /api/v1/queryrole HTTP/1.1" 200 -

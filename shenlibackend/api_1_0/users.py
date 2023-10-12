@@ -249,9 +249,20 @@ def reset_pwd():
 
 @api.route("/queryrole", methods=["POST"])
 def query_role():
-    role_objs = Roles.query.all()
-    role_list = [role_obj.serialize() for role_obj in role_objs]
-    return jsonify(code=1000, msg="success", data=role_list)
+    data = request.get_json()
+    condition = data.get("condition", "")
+    page = data.get("page", 1)
+    per_page = data.get("per_page", 999)
+
+    role_query = Roles.query.filter(
+        Roles.dispname.like("%" + condition + "%")
+    )
+    role_objs = role_query.paginate(page, per_page)
+    role_list = [role_obj.serialize() for role_obj in role_objs.items]
+    return jsonify(code=1000, msg="success", data={
+        "data": role_list,
+        "total": role_objs.total
+    })
 
 
 @api.route("/addrole", methods=["POST"])
