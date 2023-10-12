@@ -6,12 +6,12 @@ from shenlibackend import db
 from sqlalchemy import or_, and_, not_, func, desc
 from shenlibackend.models.users import User
 from shenlibackend.models.users import Roles
-from shenlibackend.models.customer import Customer
+from shenlibackend.models.suppliers import Suppliers
 from shenlibackend.utils.shenliexceptions import *
 from shenlibackend.utils.snowflake import id_generator
 from shenlibackend.utils.roleutil import get_roles
 
-from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 
 def error_handler(error):
@@ -25,39 +25,40 @@ def error_handler(error):
 
 
 # 创建客户
-@api.route('/addcustomer', methods=['POST'])
-def create_customer():
+@api.route('/addsupplier', methods=['POST'])
+def create_supplier():
     data = request.json
     id = id_generator.generate_id()
     data["id"] = id
-    new_customer = Customer(**data)
+    new_supplier = Suppliers(**data)
     try:
-        db.session.add(new_customer)
+        db.session.add(new_supplier)
         db.session.commit()
     except Exception as e:
         current_app.logger.error(str(e))
-        return error_handler(CustomerAddError)
+        return error_handler(SuppliersAddError)
 
     return jsonify(code=1000, msg="success", display=False)
 
 
 # 更新客户信息
-@api.route('/modifycustomer', methods=['POST'])
-def update_customer():
+@api.route('/modifysupplier', methods=['POST'])
+def update_supplier():
     data = request.json
     id = data.get("id")
-    customer = Customer.query.get(id)
+    customer = Suppliers.query.get(id)
     if not customer:
         return error_handler(UserNotExit)
 
     for key, value in data.items():
         if key != "id":
-            setattr(customer, key, value)
+            if hasattr(customer, key):
+                setattr(customer, key, value)
     try:
         db.session.commit()
     except Exception as e:
         current_app.logger.error(str(e))
-        return error_handler(CustomerModifyError)
+        return error_handler(SuppliersModifyError)
     return jsonify(
         code=1000,
         msg="success",
@@ -67,19 +68,19 @@ def update_customer():
 
 # 删除员工
 @api.route('/delcustomer', methods=['POST'])
-def delete_customer():
+def delete_supplier():
     data = request.get_json()
     ids = data.get("ids")
 
     try:
-        Customer.query.filter(
-            Customer.id.in_(ids)
+        Suppliers.query.filter(
+            Suppliers.id.in_(ids)
         ).delete(synchronize_session=False)
 
         db.session.commit()
     except Exception as e:
         current_app.logger.error(str(e))
-        return error_handler(CustomerDelError)
+        return error_handler(SuppliersDelError)
 
     return jsonify(
         code=1000,
@@ -89,9 +90,9 @@ def delete_customer():
 
 
 # 删除员工
-@api.route('/querycustomer', methods=['POST'])
+@api.route('/querysupplier', methods=['POST'])
 @jwt_required()
-def query_customer():
+def query_supplier():
     data = request.get_json()
     condition = data.get("condition")
 
@@ -104,25 +105,23 @@ def query_customer():
     page = data.get("page", 1)  # 默认页码为 1
     per_page = data.get("per_page", 10)  # 默认每页显示 10 条记录
 
-    customer_query = Customer.query.filter(
+    suppliers_query = Suppliers.query.filter(
         or_(
-            Customer.name.like("%" + condition + "%"),
-            Customer.phone.like("%" + condition + "%"),
-            Customer.sales_consultant.like("%" + condition + "%")
+            Suppliers.name.like("%" + condition + "%"),
         )
     )
 
     # 分页查询
-    customers = customer_query.paginate(page=page, per_page=per_page)
+    suppliers = suppliers_query.paginate(page=page, per_page=per_page)
 
-    customer_list = [customer.serialize() for customer in customers.items]
+    suppliers_list = [Suppliers.serialize() for Suppliers in suppliers.items]
 
     return jsonify(
         code=1000,
         msg="success",
         display=False,
         data={
-            "data": customer_list,
-            "total": customers.total
+            "data": suppliers_list,
+            "total": suppliers.total
         }
     )

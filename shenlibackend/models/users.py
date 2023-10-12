@@ -13,7 +13,7 @@ from shenlibackend.utils.snowflake import id_generator
 from shenlibackend.models.basemodel import BaseModel
 
 
-class User(UserMixin, db.Model):
+class User(UserMixin, BaseModel):
     """
     user base model, not create table
     """
@@ -28,8 +28,6 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(64), unique=True, index=True)
     role = db.Column(db.BigInteger)
     dept = db.Column(db.BigInteger)
-    create_at = db.Column(db.DateTime, default=datetime.datetime.now)
-    update_at = db.Column(db.DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
 
     @property
     def password(self):
@@ -71,6 +69,8 @@ class Roles(BaseModel):
     __tablename__ = 'roles'
     id = db.Column(db.BigInteger, primary_key=True)
     name = db.Column(db.String(64))
+    dispname = db.Column(db.String(64))
     permission = db.Column(db.String(64))
+
 
 

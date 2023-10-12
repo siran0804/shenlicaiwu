@@ -75,8 +75,44 @@ class MissAuthorError():
     未登录
     """
     error_code = 1010
-    msg = 'Missing Authorization',
-    display = False
+    msg = '未登录'
+    display = True
+
+
+class ResetPwdError():
+    """
+    未登录
+    """
+    error_code = 1011
+    msg = '重置密码错误'
+    display = True
+
+
+class RoleAddError():
+    """
+    未登录
+    """
+    error_code = 1501
+    msg = '添加角色失败'
+    display = True
+
+
+class RoleModifyError():
+    """
+    未登录
+    """
+    error_code = 1502
+    msg = '修改角色失败'
+    display = True
+
+
+class RoleDelError():
+    """
+    未登录
+    """
+    error_code = 1502
+    msg = '删除角色失败'
+    display = True
 
 
 class DepartmentsAddError():
@@ -149,3 +185,21 @@ class CustomerQueryError():
     display = True
     msg = "查询客户失败"
     error_code = 3006
+
+
+class SuppliersAddError():
+    display = True
+    msg = "添加供应商失败"
+    error_code = 4001
+
+
+class SuppliersModifyError():
+    display = True
+    msg = "修改供应商失败"
+    error_code = 4002
+
+
+class SuppliersDelError():
+    display = True
+    msg = "删除供应商失败"
+    error_code = 4003

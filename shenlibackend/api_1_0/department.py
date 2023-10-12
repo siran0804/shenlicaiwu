@@ -21,7 +21,7 @@ def error_handler(error):
 
 
 @api.route("/adddept", methods=["POST"])
-@jwt_required()
+# @jwt_required()
 def add_departments():
 
     request_param = request.get_json()
@@ -46,7 +46,7 @@ def add_departments():
 
 
 @api.route("/querydept", methods=["POST"])
-@jwt_required()
+# @jwt_required()
 def query_depts():
     request_param = request.get_json()
     id = request_param.get("id", None)
@@ -55,7 +55,7 @@ def query_depts():
         dept = current_app.config.get("RDEPT")
         id = dept
         dept_obj = Departments.query.filter_by(id=id).first()
-        data = [{"id": dept_obj.id, "name": dept_obj.name,
+        data = [{"id": str(dept_obj.id), "name": dept_obj.name,
                  "parent": dept_obj.parent, "pname": dept_obj.pname,
                  "idlink": dept_obj.idlink, "children": []}]
         total = [1]
@@ -63,7 +63,7 @@ def query_depts():
         return jsonify(code=1000, msg="success", data=data, display=False)
 
 
-@api.route("/modifydept")
+@api.route("/modifydept", methods=["POST"])
 def modify_dept():
     request_param = request.get_json()
     id = request_param.get("id", None)
@@ -78,7 +78,7 @@ def modify_dept():
         return error_handler(DepartmentsModifyError)
 
 
-@api.route("/deldept")
+@api.route("/deldept", methods=["POST"])
 def del_dept():
     request_param = request.get_json()
     id = request_param.get("id", None)
@@ -97,11 +97,12 @@ def del_dept():
         return error_handler(DepartmentsDelError)
 
     if t and t > 0:
-        return jsonify(code=6061, msg="该部门或子部门下存在教师，不允许删除", display=True)
+        return jsonify(code=6061, msg="该部门或子部门下存在员工，不允许删除", display=True)
 
     try:
         db.session.delete(dept_obj)
         db.session.commit()
+        return jsonify(code=1000, msg="success", display=False)
     except Exception as e:
         db.session.rollback()
         current_app.logger.error(str(e))
@@ -143,8 +144,8 @@ def get_depts(data, total):
         total[0] += len(depts)
         if len(depts) != 0:
             for dept in depts:
-                d["children"].append({"id": dept.id, "name": dept.name,
-                                      "parent": dept.parent, "pname": dept.pname,
+                d["children"].append({"id": str(dept.id), "name": dept.name,
+                                      "parent": str(dept.parent), "pname": dept.pname,
                                       "idlink": dept.idlink, "children": []})
             get_depts(d["children"], total)
 
@@ -153,5 +154,5 @@ def get_children(parent, childrens):
     depts_obj = Departments.query.filter_by(parent=parent).all()
     if len(depts_obj) != 0:
         for dept_obj in depts_obj:
-            childrens.append(dept_obj.id)
-            get_children(dept_obj.id, childrens)
+            childrens.append(str(dept_obj.id))
+            get_children(str(dept_obj.id), childrens)

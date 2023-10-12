@@ -11,4 +11,8 @@ class BaseModel(db.Model):
     update_at = db.Column(db.DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
 
     def serialize(self):
-        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
+        data = {c.name: getattr(self, c.name) for c in self.__table__.columns}
+        data["id"] = str(data["id"])
+
+        return data

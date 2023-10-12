@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 from . import api
 from flask import jsonify, request, current_app
+from sqlalchemy import or_
 from shenlibackend import db
 from shenlibackend.models.users import User
 from shenlibackend.models.users import Roles
+from shenlibackend.models.departments import Departments
 from shenlibackend.utils.shenliexceptions import *
 from shenlibackend.utils.roleutil import get_roles
+from shenlibackend.utils.snowflake import id_generator
 from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity
 
 
@@ -94,8 +97,10 @@ def add_employee():
 
     password = data.get('password', email)
 
+    id = id_generator.generate_id()
     # 创建用户对象
     user = User(
+        id=id,
         username=username,
         phone=phone,
         password=password,
@@ -109,6 +114,7 @@ def add_employee():
         db.session.add(user)
         db.session.commit()
     except Exception as e:
+        current_app.logger.error(str(e))
         return error_handler(UserAddError)
 
     return jsonify(
@@ -120,7 +126,7 @@ def add_employee():
 
 # 修改员工信息
 @api.route('/modifyemployee', methods=['POST'])
-@jwt_required()
+# @jwt_required()
 def update_employee():
     data = request.get_json()
     id = data.get("id")
@@ -171,6 +177,153 @@ def delete_employee():
         msg="success",
         display=False
     )
+
+
+@api.route("/queryemployee", methods=["POST"])
+# @jwt_required()
+def query_employee():
+    data = request.get_json()
+    condition = data.get("condition", "")
+    page = data.get("page", 1)
+    per_page = data.get("per_page", 10)
+
+    employee_query = User.query.filter(
+        or_(
+            User.username.like("%" + condition + "%"),
+            User.phone.like("%" + condition + "%"),
+            User.email.like("%" + condition + "%")
+        )
+    )
+
+    employee = employee_query.paginate(page=page, per_page=per_page)
+    employee_list = [emp.serialize() for emp in employee.items]
+
+    departments = Departments.query.all()
+    departments_map = {
+        dept.id: dept for dept in departments
+    }
+
+    roles = Roles.query.all()
+    roles_map = {
+        role.id: role for role in roles
+    }
+
+    for emp in employee_list:
+        dept = departments_map.get(emp["dept"], None)
+        deptname = dept.name if dept else ""
+
+        role = roles_map.get(emp["role"], None)
+        role_dispname = role.dispname if role else ""
+
+        emp["deptname"] = deptname
+        emp["role_dispname"] = role_dispname
+
+        emp["dept"] = str(emp["dept"])
+        emp["role"] = str(emp["role"])
+
+    return jsonify(
+        code=1000,
+        msg="success",
+        display=False,
+        data={
+            "data": employee_list,
+            "total": employee.total
+        }
+    )
+
+
+@api.route("/resetpwd", methods=["POST"])
+# @jwt_required()
+def reset_pwd():
+    data = request.get_json()
+    id = data.get("id")
+    employee = User.query.get(id)
+    employee.password = employee.email
+    try:
+        db.session.commit()
+    except Exception as e:
+        current_app.logger.error(str(e))
+        return error_handler(ResetPwdError)
+    return jsonify(code=1000, msg="success", display=False)
+
+
+@api.route("/queryrole", methods=["POST"])
+def query_role():
+    role_objs = Roles.query.all()
+    role_list = [role_obj.serialize() for role_obj in role_objs]
+    return jsonify(code=1000, msg="success", data=role_list)
+
+
+@api.route("/addrole", methods=["POST"])
+def add_role():
+    data = request.get_json()
+    name = data.get('name')
+    dispname = data.get('dispname')
+    permission = data.get("permission")
+
+    id = id_generator.generate_id()
+    # 创建用户对象
+    role = Roles(
+        id=id,
+        name=name,
+        dispname=dispname,
+        permission=permission
+    )
+
+    try:
+        db.session.add(role)
+        db.session.commit()
+    except Exception as e:
+        current_app.logger.error(str(e))
+        return error_handler(RoleAddError)
+    return jsonify(code=1000, msg="success", display=False)
+
+
+@api.route('/modifyuser', methods=['POST'])
+# @jwt_required()
+def modify_user():
+    data = request.get_json()
+    id = data.get("id")
+    role = Roles.query.get(id)
+
+    # 更新员工信息
+    role.name = data.get('username', role.name)
+    role.dispname = data.get('dispname', role.dispname)
+
+    try:
+        db.session.commit()
+    except Exception as e:
+        current_app.logger.error(str(e))
+        return error_handler(RoleModifyError)
+
+    return jsonify(
+        code=1000,
+        msg="success",
+        display=False
+    )
+
+
+@api.route('/delrole', methods=['POST'])
+def del_role():
+    data = request.get_json()
+    ids = data.get("ids")
+
+    try:
+        Roles.query.filter(
+            Roles.id.in_(ids)
+        ).delete(synchronize_session=False)
+
+        db.session.commit()
+    except Exception as e:
+        current_app.logger.error(str(e))
+        return error_handler(RoleDelError)
+
+    return jsonify(
+        code=1000,
+        msg="success",
+        display=False
+    )
+
 
 @api.route("/hello")
 def hello():
