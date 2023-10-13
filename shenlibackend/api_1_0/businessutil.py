@@ -5,10 +5,10 @@ from flask import jsonify, current_app
 
 # 你可以按需添加或删除公司类型的名称
 COMPANY_TYPE = [
-                "个体工商户", "有限责任公司", "股份有限公司", "合伙企业", "有限合伙公司",
-                "股份公司", "社会企业", "非营利组织", "合作社", "科技初创公司", "制造公司",
-                "金融机构", "餐饮业", "媒体和娱乐公司", "教育机构"
+                {"id": 0, "value": "个体工商户"}, {"id": 1, "value": "有限责任公司"},
+                {"id": 2, "value": "股份有限公司"}, {"id": 3, "value": "制造公司"}
             ]
+
 
 CUSTOMER_TYPE = [{"id": 0, "value": "电销"}, {"id": 1, "value": "直客"}]
 
@@ -17,8 +17,13 @@ BUSINESS_TYPE = [{"id": 0, "value": "注册"}, {"id": 1, "value": "个体户开�
 INDUSTRY = [{"id": 0, "value": "现代服务"}, {"id": 1, "value": "医疗"}]
 
 CLIENT_PROGRESS = [
-    "0%", "10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"
-]
+                    {"id": 0, "value": "0%"}, {"id": 1, "value": "10%"},
+                    {"id": 2, "value": "20%"}, {"id": 3, "value": "30%"},
+                    {"id": 4, "value": "40%"}, {"id": 5, "value": "50%"},
+                    {"id": 6, "value": "60%"}, {"id": 7, "value": "70%"},
+                    {"id": 8, "value": "80%"}, {"id": 9, "value": "90%"},
+                    {"id": 10, "value": "100%"},
+                   ]
 
 
 @api.route('/businesstype', methods=['POST'])
