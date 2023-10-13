@@ -10,15 +10,11 @@ COMPANY_TYPE = [
                 "金融机构", "餐饮业", "媒体和娱乐公司", "教育机构"
             ]
 
-CUSTOMER_TYPE = [
-    "电销", "直客"
-]
+CUSTOMER_TYPE = [{"id": 0, "value": "电销"}, {"id": 1, "value": "直客"}]
 
-BUSINESS_TYPE = [
-    "注册", "个体户开票"
-]
+BUSINESS_TYPE = [{"id": 0, "value": "注册"}, {"id": 1, "value": "个体户开票"}]
 
-INDUSTRY = ["现代服务", "医疗"]
+INDUSTRY = [{"id": 0, "value": "现代服务"}, {"id": 1, "value": "医疗"}]
 
 CLIENT_PROGRESS = [
     "0%", "10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"
