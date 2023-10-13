@@ -268,8 +268,8 @@ def query_role():
 @api.route("/addrole", methods=["POST"])
 def add_role():
     data = request.get_json()
-    name = data.get('roleAuth')
-    dispname = data.get('roleName')
+    name = data.get('name')
+    dispname = data.get('dispname')
     permission = data.get("permission")
 
     id = id_generator.generate_id()
@@ -290,7 +290,7 @@ def add_role():
     return jsonify(code=1000, msg="success", display=False)
 
 
-@api.route('/modifyuser', methods=['POST'])
+@api.route('/modifyrole', methods=['POST'])
 # @jwt_required()
 def modify_user():
     data = request.get_json()
@@ -298,7 +298,7 @@ def modify_user():
     role = Roles.query.get(id)
 
     # 更新员工信息
-    role.name = data.get('username', role.name)
+    role.name = data.get('name', role.name)
     role.dispname = data.get('dispname', role.dispname)
 
     try:
