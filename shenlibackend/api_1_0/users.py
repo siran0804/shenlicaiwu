@@ -268,8 +268,8 @@ def query_role():
 @api.route("/addrole", methods=["POST"])
 def add_role():
     data = request.get_json()
-    name = data.get('name')
-    dispname = data.get('dispname')
+    name = data.get('roleAuth')
+    dispname = data.get('roleName')
     permission = data.get("permission")
 
     id = id_generator.generate_id()
