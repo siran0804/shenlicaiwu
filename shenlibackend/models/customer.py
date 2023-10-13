@@ -15,19 +15,19 @@ class Customer(BaseModel):
     phone = db.Column(db.String(20), unique=True, nullable=False)
 
     # 公司类型
-    company_type = db.Column(db.String(50))
+    company_type = db.Column(db.INTEGER)
 
     # 客户类型
-    customer_type = db.Column(db.String(50))
+    customer_type = db.Column(db.INTEGER)
 
     # 业务类型
-    business_type = db.Column(db.String(50))
+    business_type = db.Column(db.INTEGER)
 
     # 行业
-    industry = db.Column(db.String(50))
+    industry = db.Column(db.INTEGER)
 
     # 客户进度
-    client_progress = db.Column(db.String(32))
+    client_progress = db.Column(db.INTEGER)
 
     # 销售顾问
     sales_consultant = db.Column(db.BigInteger)
