@@ -16,7 +16,7 @@ from flask_jwt_extended import create_access_token, create_refresh_token, jwt_re
 
 def error_handler(error):
     response = jsonify({
-        'msg': error.msg,
+        'message': error.msg,
         'code': error.error_code,
         'display': error.display
     })
@@ -52,8 +52,7 @@ def update_customer():
 
     for key, value in data.items():
         if key != "id":
-            if hasattr(customer, key):
-                setattr(customer, key, value)
+            setattr(customer, key, value)
     try:
         db.session.commit()
     except Exception as e:
@@ -113,13 +112,6 @@ def query_customer():
     page = data.get("page", 1)  # 默认页码为 1
     per_page = data.get("per_page", 10)  # 默认每页显示 10 条记录
 
-
-    # 查出所有员工
-    all_users = User.query.all()
-    all_users_map = {
-        str(user.id): user for user in all_users
-    }
-
     customer_query = Customer.query
 
     if condition:
@@ -164,7 +156,7 @@ def query_customer():
     # 分页查询
     customers = customer_query.paginate(page=page, per_page=per_page)
 
-    customer_list = [customer.serialize(all_users_map) for customer in customers.items]
+    customer_list = [customer.serialize() for customer in customers.items]
 
     return jsonify(
         code=1000,
@@ -175,27 +167,6 @@ def query_customer():
             "total": customers.total
         }
     )
-
-
-@api.route('/assigcustomer', methods=['POST'])
-def assign_customer():
-    data = request.get_json()
-    customer_ids = data.get("customers", None)
-    user_id = data.get("employee", None)
-
-    Customer.query.filter(
-        Customer.id.in_(customer_ids)
-    ).update(
-        {"sales_consultant": user_id}
-    )
-
-    try:
-        db.session.commit()
-        return jsonify(code=1000, msg="success", display=False)
-    except Exception as e:
-        current_app.logger.error(str(e))
-        return error_handler(CustomerAssignError)
-
 
 
 
