@@ -16,7 +16,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 
 def error_handler(error):
     response = jsonify({
-        'message': error.msg,
+        'msg': error.msg,
         'code': error.error_code,
         'display': error.display
     })

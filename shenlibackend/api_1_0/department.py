@@ -12,7 +12,7 @@ from shenlibackend.utils import roleutil
 
 def error_handler(error):
     response = jsonify({
-        'message': error.msg,
+        'msg': error.msg,
         'code': error.error_code,
         'display': error.display
     })
@@ -82,6 +82,10 @@ def modify_dept():
 def del_dept():
     request_param = request.get_json()
     id = request_param.get("id", None)
+
+    if id == str(current_app.config.get("RDEPT")):
+        return error_handler(DepartmentsNotAllowDelError)
+
     dept_obj = Departments.query.filter_by(id=id).first()
 
     dept_idlink = dept_obj.idlink
