@@ -94,7 +94,7 @@ def delete_supplier():
 # @jwt_required()
 def query_supplier():
     data = request.get_json()
-    condition = data.get("condition")
+    condition = data.get("condition", "")
 
     # current_user = get_jwt_identity()
     # user_id, role = get_roles(current_user)
