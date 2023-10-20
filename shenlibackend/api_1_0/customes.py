@@ -112,6 +112,11 @@ def query_customer():
     page = data.get("page", 1)  # 默认页码为 1
     per_page = data.get("per_page", 10)  # 默认每页显示 10 条记录
 
+    user_objs = User.query.all()
+    user_objs_map = {
+        str(item.id): item for item in user_objs
+    }
+
     customer_query = Customer.query
 
     if condition:
@@ -174,7 +179,7 @@ def query_customer():
     # 分页查询
     customers = customer_query.paginate(page=page, per_page=per_page)
 
-    customer_list = [customer.serialize() for customer in customers.items]
+    customer_list = [customer.serialize(user_objs_map) for customer in customers.items]
 
     return jsonify(
         code=1000,

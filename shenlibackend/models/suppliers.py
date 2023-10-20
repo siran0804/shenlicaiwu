@@ -16,15 +16,20 @@ class Suppliers(BaseModel):
 
     # 政策
     policy = db.Column(db.String(128))
-    
+
+    # 注册+报税+管理费
     reg_tax_mag_fee = db.Column(db.INTEGER)
 
+    # 注销费
     deregistration_fee = db.Column(db.INTEGER)
 
-    invoicing_fee = db.Column(db.INTEGER)
+    # 开票服务费
+    invoicing_fee = db.Column(db.String(64))
 
+    # 银行开户费
     bank_account_fee = db.Column(db.INTEGER)
 
+    # 成本
     total_cost = db.Column(db.INTEGER)
 
     def __repr__(self):
