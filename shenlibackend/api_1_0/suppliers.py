@@ -91,16 +91,16 @@ def delete_supplier():
 
 # 删除员工
 @api.route('/querysupplier', methods=['POST'])
-@jwt_required()
+# @jwt_required()
 def query_supplier():
     data = request.get_json()
     condition = data.get("condition")
 
-    current_user = get_jwt_identity()
-    user_id, role = get_roles(current_user)
-
-    if role == 'admin':
-        pass
+    # current_user = get_jwt_identity()
+    # user_id, role = get_roles(current_user)
+    #
+    # if role == 'admin':
+    #     pass
 
     page = data.get("page", 1)  # 默认页码为 1
     per_page = data.get("per_page", 10)  # 默认每页显示 10 条记录
