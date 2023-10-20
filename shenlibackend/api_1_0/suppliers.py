@@ -67,7 +67,7 @@ def update_supplier():
 
 
 # 删除员工
-@api.route('/delcustomer', methods=['POST'])
+@api.route('/delsupplier', methods=['POST'])
 def delete_supplier():
     data = request.get_json()
     ids = data.get("ids")
