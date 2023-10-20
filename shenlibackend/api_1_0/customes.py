@@ -96,12 +96,12 @@ def query_customer():
     # 查询条件
     condition = data.get("condition")
     # 筛选条件
-    company_type = data.get("company_type", None)
-    customer_type = data.get("customer_type", None)
-    business_type = data.get("business type", None)
-    industry = data.get("industry", None)
-    sales_consultant = data.get("sales_consultant", None)
-    client_progress = data.get("client_progress", None)
+    # company_type = data.get("company_type", None)
+    # customer_type = data.get("customer_type", None)
+    # business_type = data.get("business type", None)
+    # industry = data.get("industry", None)
+    # sales_consultant = data.get("sales_consultant", None)
+    # client_progress = data.get("client_progress", None)
 
     # current_user = get_jwt_identity()
     # user_id, role = get_roles(current_user)
@@ -120,43 +120,61 @@ def query_customer():
     customer_query = Customer.query
 
     if condition:
-        customer_query = customer_query.filter(
-        or_(
-            Customer.name.like("%" + condition + "%"),
-            Customer.phone.like("%" + condition + "%"),
-            Customer.sales_consultant.like("%" + condition + "%")
-        )
-    )
 
-    if company_type:
-        customer_query = customer_query.filter(
-            Customer.company_type.in_(company_type)
-        )
+        contact = condition.get("contact", None)
+        name = condition.get("name", None)
+        phone = condition.get("phone", None)
+        company_type = condition.get("company_type", None)
+        customer_type = condition.get("customer_type", None)
+        industry = condition.get("industry", None)
+        business_type = condition.get("business_type", None)
+        sales_consultant = condition.get("sales_consultant", None)
+        client_progress = condition.get("client_progress", None)
 
-    if customer_type:
-        customer_query = customer_query.filter(
-            Customer.customer_type.in_(customer_type)
-        )
+        if name:
+            customer_query = customer_query.filter(
+                Customer.name.like("%" + name + "%")
+            )
 
-    if industry:
-        customer_query = customer_query.filter(
-            Customer.industry.in_(industry)
-        )
+        if phone:
+            customer_query = customer_query.filter(
+                Customer.phone.like("%" + phone + "%")
+            )
 
-    if business_type:
-        customer_query = customer_query.filter(
-            Customer.business_type.in_(business_type)
-        )
+        if contact:
+            customer_query = customer_query.filter(
+                Customer.contact.like("%" + contact + "%")
+            )
 
-    if sales_consultant:
-        customer_query = customer_query.filter(
-            Customer.sales_consultant.in_(sales_consultant)
-        )
+        if company_type:
+            customer_query = customer_query.filter(
+                Customer.company_type == company_type
+            )
 
-    if client_progress:
-        customer_query = customer_query.filter(
-            Customer.client_progress.in_(client_progress)
-        )
+        if customer_type:
+            customer_query = customer_query.filter(
+                Customer.customer_type == customer_type
+            )
+
+        if industry:
+            customer_query = customer_query.filter(
+                Customer.industry == industry
+            )
+
+        if business_type:
+            customer_query = customer_query.filter(
+                Customer.business_type == business_type
+            )
+
+        if sales_consultant:
+            customer_query = customer_query.filter(
+                Customer.sales_consultant == sales_consultant
+            )
+
+        if client_progress:
+            customer_query = customer_query.filter(
+                Customer.client_progress == client_progress
+            )
 
     # 分页查询
     customers = customer_query.paginate(page=page, per_page=per_page)
@@ -172,6 +190,3 @@ def query_customer():
             "total": customers.total
         }
     )
-
-
-
