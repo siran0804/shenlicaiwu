@@ -150,6 +150,14 @@ class DepartmentsAlterError():
     msg = "移动部门失败"
     error_code = 2004
 
+class DepartmentsNotAllowDelError():
+    """
+    multiple login not allowed
+    """
+    display = True
+    msg = "根部门不允许删除"
+    error_code = 2005
+
 
 class CustomerAddError():
     display = True
@@ -185,6 +193,11 @@ class CustomerQueryError():
     display = True
     msg = "查询客户失败"
     error_code = 3006
+
+class CustomerAssignError():
+    display = True
+    msg = "分配客户失败"
+    error_code = 3007
 
 
 class SuppliersAddError():

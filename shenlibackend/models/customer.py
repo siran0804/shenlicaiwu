@@ -1,6 +1,6 @@
 from shenlibackend.models.basemodel import BaseModel
 from shenlibackend import db
-
+from shenlibackend.utils.businesstype import *
 
 class Customer(BaseModel):
     id = db.Column(db.BigInteger, primary_key=True)
@@ -33,5 +33,38 @@ class Customer(BaseModel):
     sales_consultant = db.Column(db.BigInteger)
 
 
+    def serialize(self, users_map):
+
+        data = {c.name: getattr(self, c.name) for c in self.__table__.columns}
+        data["id"] = str(data["id"])
+
+        def get_dict_value(dictionary, key, default=None):
+            return dictionary.get(key, default)
+
+        # 需要转换的键列表
+        dict_mapping = {
+            "business_type": BUSINESS_TYPE_DICT,
+            "client_progress": CLIENT_PROGRESS_DICT,
+            "company_type": COMPANY_TYPE_DICT,
+            "customer_type": CUSTOMER_TYPE_DICT,
+            "industry": INDUSTRY_DICT,
+            # 添加其他需要转换的键值对和对应的字典
+        }
+
+        # 转换指定键的值
+        for key, dictionary in dict_mapping.items():
+            if key in data:
+                data[key + "_name"] = get_dict_value(dictionary, data[key])
+
+        if data["sales_consultant"] and users_map:
+            user_obj = users_map.get(str(data["sales_consultant"]), None)
+            username = user_obj.username if user_obj else None
+            data["sales_consultant"] = username
+
+        return data
+
+
     def __repr__(self):
         return f'<Customer {self.name}>'
+
+
