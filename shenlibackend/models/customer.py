@@ -32,6 +32,8 @@ class Customer(BaseModel):
     # 销售顾问
     sales_consultant = db.Column(db.BigInteger)
 
+    # update progress 更进度
+    update_progress = db.Column(db.String(32))
 
     def serialize(self, users_map):
 

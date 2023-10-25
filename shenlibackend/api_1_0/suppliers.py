@@ -94,7 +94,7 @@ def delete_supplier():
 # @jwt_required()
 def query_supplier():
     data = request.get_json()
-    condition = data.get("condition", "")
+    condition = data.get("condition", {})
 
     # current_user = get_jwt_identity()
     # user_id, role = get_roles(current_user)
@@ -105,9 +105,11 @@ def query_supplier():
     page = data.get("page", 1)  # 默认页码为 1
     per_page = data.get("per_page", 10)  # 默认每页显示 10 条记录
 
+    name = condition.get("name", "")
+
     suppliers_query = Suppliers.query.filter(
         or_(
-            Suppliers.name.like("%" + condition + "%"),
+            Suppliers.name.like("%" + name + "%"),
         )
     )
 

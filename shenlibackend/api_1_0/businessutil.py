@@ -54,3 +54,33 @@ def customer_type():
         msg="success",
         data=CUSTOMER_TYPE
     )
+
+
+@api.route('/registerabletype', methods=['POST'])
+def registerable_type():
+
+    return jsonify(
+        code=1000,
+        msg="success",
+        data=REGISTERABLE_TYPE
+    )
+
+
+@api.route('/collectionmethod', methods=['POST'])
+def collection_method():
+
+    return jsonify(
+        code=1000,
+        msg="success",
+        data=COLLECTION_METHOD
+    )
+
+
+@api.route('/policy', methods=['POST'])
+def policy():
+
+    return jsonify(
+        code=1000,
+        msg="success",
+        data=POLICY
+    )

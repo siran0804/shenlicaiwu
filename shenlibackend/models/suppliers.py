@@ -1,5 +1,6 @@
 from shenlibackend.models.basemodel import BaseModel
 from shenlibackend import db
+from shenlibackend.utils.businesstype import *
 
 
 class Suppliers(BaseModel):
@@ -31,6 +32,29 @@ class Suppliers(BaseModel):
 
     # 成本
     total_cost = db.Column(db.INTEGER)
+
+    def serialize(self):
+
+        data = {c.name: getattr(self, c.name) for c in self.__table__.columns}
+        data["id"] = str(data["id"])
+
+        def get_dict_value(dictionary, key, default=None):
+            return dictionary.get(key, default)
+
+        # 需要转换的键列表
+        dict_mapping = {
+            "reg_type": REGISTERABLE_TYPE_DICT,
+            "collection_method": COLLECTION_METHOD_DICT,
+            "policy": POLICY_DICT
+            # 添加其他需要转换的键值对和对应的字典
+        }
+
+        # 转换指定键的值
+        for key, dictionary in dict_mapping.items():
+            if key in data:
+                data[key + "_name"] = get_dict_value(dictionary, data[key])
+
+        return data
 
     def __repr__(self):
         return f'<Customer {self.name}>'
