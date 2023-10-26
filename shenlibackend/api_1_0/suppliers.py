@@ -105,13 +105,46 @@ def query_supplier():
     page = data.get("page", 1)  # 默认页码为 1
     per_page = data.get("per_page", 10)  # 默认每页显示 10 条记录
 
-    name = condition.get("name", "")
+    suppliers_query = Suppliers.query
 
-    suppliers_query = Suppliers.query.filter(
-        or_(
-            Suppliers.name.like("%" + name + "%"),
-        )
-    )
+    if condition:
+        name = condition.get("name", "")
+        region = condition.get("region", "")
+        address = condition.get("address", "")
+        reg_type = condition.get("reg_type", "")
+        collection_method = condition.get("collection_method", "")
+        policy = condition.get("policy", "")
+
+        if name:
+            suppliers_query = suppliers_query.filter(
+                Suppliers.name.like("%" + name + "%")
+            )
+
+        if region:
+            suppliers_query = suppliers_query.filter(
+                Suppliers.region.like("%" + region + "%")
+            )
+
+        if address:
+            suppliers_query = suppliers_query.filter(
+                Suppliers.region.like("%" + address + "%")
+            )
+
+        if reg_type:
+            suppliers_query = suppliers_query.filter(
+                Suppliers.reg_type == reg_type
+            )
+
+        if collection_method:
+            suppliers_query = suppliers_query.query.filter(
+                Suppliers.collection_method == collection_method
+            )
+
+        if policy:
+            suppliers_query = suppliers_query.query.filter(
+                Suppliers.policy == policy
+            )
+
 
     # 分页查询
     suppliers = suppliers_query.paginate(page=page, per_page=per_page)
