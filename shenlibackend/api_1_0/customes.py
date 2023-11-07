@@ -190,3 +190,291 @@ def query_customer():
             "total": customers.total
         }
     )
+
+
+@api.route('/queryseascustomer', methods=['POST'])
+# @jwt_required()
+def query_seas_customer():
+    data = request.get_json()
+    # 查询条件
+    condition = data.get("condition")
+    # 筛选条件
+
+    page = data.get("page", 1)  # 默认页码为 1
+    per_page = data.get("per_page", 10)  # 默认每页显示 10 条记录
+
+    user_objs = User.query.all()
+    user_objs_map = {
+        str(item.id): item for item in user_objs
+    }
+
+    customer_query = Customer.query.filter(
+        Customer.seas == True
+    )
+
+    if condition:
+
+        contact = condition.get("contact", None)
+        name = condition.get("name", None)
+        phone = condition.get("phone", None)
+        company_type = condition.get("company_type", None)
+        customer_type = condition.get("customer_type", None)
+        industry = condition.get("industry", None)
+        business_type = condition.get("business_type", None)
+        sales_consultant = condition.get("sales_consultant", None)
+        client_progress = condition.get("client_progress", None)
+
+        if name:
+            customer_query = customer_query.filter(
+                Customer.name.like("%" + name + "%")
+            )
+
+        if phone:
+            customer_query = customer_query.filter(
+                Customer.phone.like("%" + phone + "%")
+            )
+
+        if contact:
+            customer_query = customer_query.filter(
+                Customer.contact.like("%" + contact + "%")
+            )
+
+        if company_type:
+            customer_query = customer_query.filter(
+                Customer.company_type == company_type
+            )
+
+        if customer_type:
+            customer_query = customer_query.filter(
+                Customer.customer_type == customer_type
+            )
+
+        if industry:
+            customer_query = customer_query.filter(
+                Customer.industry == industry
+            )
+
+        if business_type:
+            customer_query = customer_query.filter(
+                Customer.business_type == business_type
+            )
+
+        if sales_consultant:
+            customer_query = customer_query.filter(
+                Customer.sales_consultant == sales_consultant
+            )
+
+        if client_progress:
+            customer_query = customer_query.filter(
+                Customer.client_progress == client_progress
+            )
+
+    # 分页查询
+    customers = customer_query.paginate(page=page, per_page=per_page)
+
+    customer_list = [customer.serialize(user_objs_map) for customer in customers.items]
+
+    return jsonify(
+        code=1000,
+        msg="success",
+        display=False,
+        data={
+            "data": customer_list,
+            "total": customers.total
+        }
+    )
+
+
+@api.route('/queryordermanagement', methods=['POST'])
+# @jwt_required()
+def query_order_management():
+    data = request.get_json()
+    # 查询条件
+    condition = data.get("condition")
+    # 筛选条件
+
+    page = data.get("page", 1)  # 默认页码为 1
+    per_page = data.get("per_page", 10)  # 默认每页显示 10 条记录
+
+    user_objs = User.query.all()
+    user_objs_map = {
+        str(item.id): item for item in user_objs
+    }
+
+    customer_query = Customer.query.filter(
+        Customer.seas == False,
+        Customer.update_progress == 'a'
+    )
+
+    if condition:
+
+        contact = condition.get("contact", None)
+        name = condition.get("name", None)
+        phone = condition.get("phone", None)
+        company_type = condition.get("company_type", None)
+        customer_type = condition.get("customer_type", None)
+        industry = condition.get("industry", None)
+        business_type = condition.get("business_type", None)
+        sales_consultant = condition.get("sales_consultant", None)
+        client_progress = condition.get("client_progress", None)
+
+        if name:
+            customer_query = customer_query.filter(
+                Customer.name.like("%" + name + "%")
+            )
+
+        if phone:
+            customer_query = customer_query.filter(
+                Customer.phone.like("%" + phone + "%")
+            )
+
+        if contact:
+            customer_query = customer_query.filter(
+                Customer.contact.like("%" + contact + "%")
+            )
+
+        if company_type:
+            customer_query = customer_query.filter(
+                Customer.company_type == company_type
+            )
+
+        if customer_type:
+            customer_query = customer_query.filter(
+                Customer.customer_type == customer_type
+            )
+
+        if industry:
+            customer_query = customer_query.filter(
+                Customer.industry == industry
+            )
+
+        if business_type:
+            customer_query = customer_query.filter(
+                Customer.business_type == business_type
+            )
+
+        if sales_consultant:
+            customer_query = customer_query.filter(
+                Customer.sales_consultant == sales_consultant
+            )
+
+        if client_progress:
+            customer_query = customer_query.filter(
+                Customer.client_progress == client_progress
+            )
+
+    # 分页查询
+    customers = customer_query.paginate(page=page, per_page=per_page)
+
+    customer_list = [customer.serialize(user_objs_map) for customer in customers.items]
+
+    return jsonify(
+        code=1000,
+        msg="success",
+        display=False,
+        data={
+            "data": customer_list,
+            "total": customers.total
+        }
+    )
+
+
+@api.route('/querypartner', methods=['POST'])
+# @jwt_required()
+def query_partner():
+    data = request.get_json()
+    # 查询条件
+    condition = data.get("condition")
+    # 筛选条件
+
+    page = data.get("page", 1)  # 默认页码为 1
+    per_page = data.get("per_page", 10)  # 默认每页显示 10 条记录
+
+    user_objs = User.query.all()
+    user_objs_map = {
+        str(item.id): item for item in user_objs
+    }
+
+    customer_query = Customer.query.filter(
+        Customer.seas == False,
+        Customer.is_completed == True
+    )
+
+    if condition:
+
+        contact = condition.get("contact", None)
+        name = condition.get("name", None)
+        phone = condition.get("phone", None)
+        company_type = condition.get("company_type", None)
+        customer_type = condition.get("customer_type", None)
+        industry = condition.get("industry", None)
+        business_type = condition.get("business_type", None)
+        sales_consultant = condition.get("sales_consultant", None)
+        client_progress = condition.get("client_progress", None)
+
+        if name:
+            customer_query = customer_query.filter(
+                Customer.name.like("%" + name + "%")
+            )
+
+        if phone:
+            customer_query = customer_query.filter(
+                Customer.phone.like("%" + phone + "%")
+            )
+
+        if contact:
+            customer_query = customer_query.filter(
+                Customer.contact.like("%" + contact + "%")
+            )
+
+        if company_type:
+            customer_query = customer_query.filter(
+                Customer.company_type == company_type
+            )
+
+        if customer_type:
+            customer_query = customer_query.filter(
+                Customer.customer_type == customer_type
+            )
+
+        if industry:
+            customer_query = customer_query.filter(
+                Customer.industry == industry
+            )
+
+        if business_type:
+            customer_query = customer_query.filter(
+                Customer.business_type == business_type
+            )
+
+        if sales_consultant:
+            customer_query = customer_query.filter(
+                Customer.sales_consultant == sales_consultant
+            )
+
+        if client_progress:
+            customer_query = customer_query.filter(
+                Customer.client_progress == client_progress
+            )
+
+    # 分页查询
+    customers = customer_query.paginate(page=page, per_page=per_page)
+
+    customer_list = [customer.serialize(user_objs_map) for customer in customers.items]
+
+    return jsonify(
+        code=1000,
+        msg="success",
+        display=False,
+        data={
+            "data": customer_list,
+            "total": customers.total
+        }
+    )
+
+
+
+
+
+
+

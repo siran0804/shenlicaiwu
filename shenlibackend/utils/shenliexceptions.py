@@ -216,3 +216,27 @@ class SuppliersDelError():
     display = True
     msg = "删除供应商失败"
     error_code = 4003
+
+
+class PersonalPerformanceAddError():
+    display = True
+    msg = "新增个人绩效失败"
+    error_code = 5001
+
+
+class PersonalPerformanceModifyError():
+    display = True
+    msg = "修改个人绩效失败"
+    error_code = 5002
+
+
+class PersonalPerformanceDelError():
+    display = True
+    msg = "删除个人绩效失败"
+    error_code = 5003
+
+
+
+
+
+

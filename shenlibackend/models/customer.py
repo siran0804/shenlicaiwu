@@ -32,8 +32,14 @@ class Customer(BaseModel):
     # 销售顾问
     sales_consultant = db.Column(db.BigInteger)
 
-    # update progress 更进度
-    update_progress = db.Column(db.String(32))
+    # update progress 更进度 a b c d四个
+    update_progress = db.Column(db.String(32), default='d')
+
+    # 是否成交
+    is_completed = db.Column(db.BOOLEAN, default=False)
+
+    # 是否是公海客户
+    seas = db.Column(db.BOOLEAN, default=False)
 
     def serialize(self, users_map):
 
@@ -64,7 +70,6 @@ class Customer(BaseModel):
             data["sales_consultant"] = username
 
         return data
-
 
     def __repr__(self):
         return f'<Customer {self.name}>'
