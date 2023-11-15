@@ -20,7 +20,7 @@ def error_handler(error):
 
 # 创建客户
 @api.route('/addselfperformance', methods=['POST'])
-def create_supplier():
+def create_selfperformance():
     data = request.json
     id = id_generator.generate_id()
     data["id"] = id
@@ -37,7 +37,7 @@ def create_supplier():
 
 # 更新客户信息
 @api.route('/modifyselfperformance', methods=['POST'])
-def update_supplier():
+def update_selfperformance():
     data = request.json
     id = data.get("id")
     self_performance = PersonalPerformance.query.get(id)
@@ -62,7 +62,7 @@ def update_supplier():
 
 # 删除员工
 @api.route('/delselfperformance', methods=['POST'])
-def delete_supplier():
+def delete_selfperformance():
     data = request.get_json()
     ids = data.get("ids")
 
@@ -83,43 +83,49 @@ def delete_supplier():
     )
 
 
-# 删除员工
-@api.route('/querysupplier', methods=['POST'])
-# @jwt_required()
-def query_supplier():
+@api.route("/queryselfperformance", methods=['POST'])
+def query_selfperformance():
+
     data = request.get_json()
     condition = data.get("condition", {})
-
-    # current_user = get_jwt_identity()
-    # user_id, role = get_roles(current_user)
-    #
-    # if role == 'admin':
-    #     pass
 
     page = data.get("page", 1)  # 默认页码为 1
     per_page = data.get("per_page", 10)  # 默认每页显示 10 条记录
 
-    self_performance_query = PersonalPerformance.query
+    performance_query = PersonalPerformance.query
 
     if condition:
-        name = condition.get("employee_name", "")
+        employee_name = condition.get("employee_name", "")
+        month = condition.get("month", "")
+        product_type = condition.get("product_type", "")
 
-        if name:
-            self_performance_query = self_performance_query.filter(
-                PersonalPerformance.name.like("%" + name + "%")
+        if employee_name:
+            performance_query = performance_query.filter(
+                PersonalPerformance.employee_name.like("%" + employee_name + "%")
             )
 
-    # 分页查询
-    self_performances = self_performance_query.paginate(page=page, per_page=per_page)
+        if month:
+            performance_query = performance_query.filter(
+                PersonalPerformance.month == month
+            )
 
-    self_performances_list = [self_performance.serialize() for self_performance in self_performances.items]
+        if product_type:
+            performance_query = performance_query.filter(
+                PersonalPerformance.product_type == product_type
+            )
+
+
+    # 分页查询
+    performance = performance_query.paginate(page=page, per_page=per_page)
+
+    performance_list = [p.serialize() for p in performance.items]
 
     return jsonify(
         code=1000,
         msg="success",
         display=False,
         data={
-            "data": self_performances_list,
-            "total": self_performances.total
+            "data": performance_list,
+            "total": performance.total
         }
     )
