@@ -70,10 +70,7 @@ class Roles(BaseModel):
     id = db.Column(db.BigInteger, primary_key=True)
     name = db.Column(db.String(64))
     dispname = db.Column(db.String(64))
-    permission = db.Column(db.String(64))
-
-
-
+    permission = db.Column(db.String(1024))
 
 
 
