@@ -5,11 +5,14 @@ from shenlibackend import jwt
 from shenlibackend.utils.shenliexceptions import *
 from flask import jsonify
 from flask_jwt_extended import get_jwt_identity
+from shenlibackend.models.users import Roles
+
+from manager import app
 
 
 def error_handler(error):
     response = jsonify({
-        'message': error.msg,
+        'msg': error.msg,
         'code': error.error_code,
         'display': error.display
     })
@@ -38,6 +41,25 @@ def roles_control(roles=None):
         return decorated
 
     return roles_permission
+
+def allcustomer_permission(action="query"):
+    def roles_permission(f):
+        @wraps(f)
+        def allcustomerdecorated(*args, **kwargs):
+            current_user = get_jwt_identity()
+            role_id = current_user.split(",")[1]
+            print(role_id)
+            with app.app_context():
+                role_obj = Roles.query.get(role_id)
+                perms = role_obj.perms
+                perms_list = json.loads(perms)
+                ac_action = "allcustomer:" + action
+                if ac_action not in perms_list:
+                    return error_handler(NoPermission)
+            return f(*args, **kwargs)
+        return allcustomerdecorated
+    return roles_permission
+
 
 
 def get_roles(current_user):

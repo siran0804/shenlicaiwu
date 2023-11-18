@@ -13,7 +13,6 @@ from shenlibackend.utils.roleutil import get_roles
 
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
-
 def error_handler(error):
     response = jsonify({
         'msg': error.msg,

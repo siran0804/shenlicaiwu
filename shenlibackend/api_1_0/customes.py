@@ -11,6 +11,8 @@ from shenlibackend.utils.shenliexceptions import *
 from shenlibackend.utils.snowflake import id_generator
 from shenlibackend.utils.roleutil import *
 
+from shenlibackend.utils.roleutil import allcustomer_permission
+
 from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity
 
 
@@ -91,6 +93,7 @@ def delete_customer():
 # 删除员工
 @api.route('/querycustomer', methods=['POST'])
 # @jwt_required()
+# @allcustomer_permission(action="query")
 def query_customer():
     data = request.get_json()
     # 查询条件
