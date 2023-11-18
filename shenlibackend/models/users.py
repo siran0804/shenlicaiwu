@@ -4,6 +4,8 @@
 # @File : publish.py
 
 import datetime
+import json
+
 from flask import current_app
 from shenlibackend import db
 from flask_login import UserMixin
@@ -70,10 +72,20 @@ class Roles(BaseModel):
     id = db.Column(db.BigInteger, primary_key=True)
     name = db.Column(db.String(64))
     dispname = db.Column(db.String(64))
-    permission = db.Column(db.String(1024))
+    perms = db.Column(db.String(1024))
 
 
+    def serialize(self):
 
+        data = {c.name: getattr(self, c.name) for c in self.__table__.columns}
+        data["id"] = str(data["id"])
+
+        perms = data.get('perms')
+        if isinstance(str, perms):
+            perms = json.loads(perms)
+            data['perms'] = perms
+
+        return data
 
 
 

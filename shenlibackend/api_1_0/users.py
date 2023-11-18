@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import json
+
 from . import api
 from flask import jsonify, request, current_app
 from sqlalchemy import or_
@@ -42,9 +44,11 @@ def login():
         role_obj = Roles.query.filter_by(
             id=role_id
         ).first()
+        role_id = str(role_obj.id)
+
         role_name = role_obj.name
 
-        identity = str(user.id) + ',' + role_name
+        identity = str(user.id) + ',' + role_id
         access_token = create_access_token(identity=identity)
         refresh_token = create_refresh_token(identity=identity)
     else:
@@ -270,7 +274,8 @@ def add_role():
     data = request.get_json()
     name = data.get('name')
     dispname = data.get('dispname')
-    permission = data.get("permission")
+    permission = data.get("perms", [])
+    perms = json.dumps(permission)
 
     id = id_generator.generate_id()
     # 创建用户对象
@@ -278,7 +283,7 @@ def add_role():
         id=id,
         name=name,
         dispname=dispname,
-        permission=permission
+        perms=perms
     )
 
     try:
@@ -300,6 +305,13 @@ def modify_user():
     # 更新员工信息
     role.name = data.get('name', role.name)
     role.dispname = data.get('dispname', role.dispname)
+
+    perms = data.get('perms', role.perms)
+
+    if isinstance(list, perms):
+        perms = json.dumps(perms)
+
+    role.perms = perms
 
     try:
         db.session.commit()
