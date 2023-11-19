@@ -11,6 +11,7 @@ from shenlibackend.models.departments import Departments
 from shenlibackend.utils.shenliexceptions import *
 from shenlibackend.utils.roleutil import get_roles
 from shenlibackend.utils.snowflake import id_generator
+from shenlibackend.utils.deptsutil import RolesHelper, DeptmentHelper
 from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity
 
 
@@ -48,7 +49,9 @@ def login():
 
         role_name = role_obj.name
 
-        identity = str(user.id) + ',' + role_id
+        dept_id = str(user.dept)
+
+        identity = str(user.id) + ',' + role_id + ',' + role_name + ',' + dept_id
         access_token = create_access_token(identity=identity)
         refresh_token = create_refresh_token(identity=identity)
     else:
@@ -68,7 +71,7 @@ def login():
     return jsonify(ret)
 
 
-@api.route("/userinfo", methods=["PODT"])
+@api.route("/userinfo", methods=["POST"])
 @jwt_required()
 def query_user():
     request_parameter = request.get_json()
@@ -76,10 +79,23 @@ def query_user():
 
     if not id:
         current_user = get_jwt_identity()
-        id, role = get_roles(current_user)
+        id, _, role_name, _ = get_roles(current_user)
 
     user = User.query.get(id)
+    dept = user.dept
+    dept_obj = Departments.query.get(dept)
+    dept_name = dept_obj.name if dept_obj else ""
     user_info = user.serialize()
+    user_info["dept_name"] = dept_name
+
+    role = user.role
+    role_obj = Roles.query.get(role)
+    perms = json.loads(role_obj.perms)
+    role_name = role_obj.dispname if role_obj else ""
+    user_info["role_name"] = role_name
+    user_info["perms"] = perms
+
+
     return jsonify(
         code=1000,
         msg="success",
@@ -184,14 +200,30 @@ def delete_employee():
 
 
 @api.route("/queryemployee", methods=["POST"])
-# @jwt_required()
+@jwt_required()
 def query_employee():
     data = request.get_json()
     condition = data.get("condition", "")
     page = data.get("page", 1)
     per_page = data.get("per_page", 10)
 
-    employee_query = User.query.filter(
+    # 根据角色获取相应部门下的员工
+    role_helper = RolesHelper()
+    if role_helper.is_admin():
+        employee_query = User.query
+    if role_helper.is_general():
+        employee_query = User.query.filter(
+            User.id == role_helper.user_id
+        )
+    if role_helper.is_manager():
+        dept_obj = Departments.query.get(role_helper.dept_id)
+        dept_helper = DeptmentHelper(role_helper.dept_id, dept_obj.idlink)
+        all_dept_id = [item.id for item in dept_helper.get_sub_dept_obj()]
+        employee_query = User.query.filter(
+            User.dept.in_(all_dept_id)
+        )
+
+    employee_query = employee_query.filter(
         or_(
             User.username.like("%" + condition + "%"),
             User.phone.like("%" + condition + "%"),
@@ -259,6 +291,10 @@ def query_role():
     per_page = data.get("per_page", 999)
 
     role_query = Roles.query.filter(
+        Roles.name != 'admin'
+    )
+
+    role_query = role_query.filter(
         Roles.dispname.like("%" + condition + "%")
     )
     role_objs = role_query.paginate(page, per_page)
@@ -308,7 +344,7 @@ def modify_user():
 
     perms = data.get('perms', role.perms)
 
-    if isinstance(list, perms):
+    if isinstance(perms, list):
         perms = json.dumps(perms)
 
     role.perms = perms

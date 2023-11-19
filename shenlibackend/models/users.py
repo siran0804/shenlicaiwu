@@ -81,7 +81,8 @@ class Roles(BaseModel):
         data["id"] = str(data["id"])
 
         perms = data.get('perms')
-        if isinstance(str, perms):
+        print(perms)
+        if isinstance(perms, str):
             perms = json.loads(perms)
             data['perms'] = perms
 

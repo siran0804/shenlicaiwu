@@ -33,7 +33,7 @@ def roles_control(roles=None):
         @wraps(f)
         def decorated(*args, **kwargs):
             current_user = get_jwt_identity()
-            role = current_user.split(',')[-1]
+            role = current_user.split(',')[2]
             if role not in roles:
                 return error_handler(NoPermission)
             return f(*args, **kwargs)
@@ -43,6 +43,7 @@ def roles_control(roles=None):
     return roles_permission
 
 def allcustomer_permission(action="query"):
+    # 所有客户权限
     def roles_permission(f):
         @wraps(f)
         def allcustomerdecorated(*args, **kwargs):
@@ -61,11 +62,92 @@ def allcustomer_permission(action="query"):
     return roles_permission
 
 
+def seacustomer_permission(action="query"):
+    # 公海客户权限
+    def roles_permission(f):
+        @wraps(f)
+        def seacustomerdecorated(*args, **kwargs):
+            current_user = get_jwt_identity()
+            role_id = current_user.split(",")[1]
+            print(role_id)
+            with app.app_context():
+                role_obj = Roles.query.get(role_id)
+                perms = role_obj.perms
+                perms_list = json.loads(perms)
+                ac_action = "seacustomer:" + action
+                if ac_action not in perms_list:
+                    return error_handler(NoPermission)
+            return f(*args, **kwargs)
+        return seacustomerdecorated
+    return roles_permission
+
+
+
+def partner_permission(action="query"):
+    # 合作客户权限
+    def roles_permission(f):
+        @wraps(f)
+        def partnerdecorated(*args, **kwargs):
+            current_user = get_jwt_identity()
+            role_id = current_user.split(",")[1]
+            print(role_id)
+            with app.app_context():
+                role_obj = Roles.query.get(role_id)
+                perms = role_obj.perms
+                perms_list = json.loads(perms)
+                ac_action = "partner:" + action
+                if ac_action not in perms_list:
+                    return error_handler(NoPermission)
+            return f(*args, **kwargs)
+        return partnerdecorated
+    return roles_permission
+
+
+def order_permission(action="query"):
+    # 合作客户权限
+    def roles_permission(f):
+        @wraps(f)
+        def orderdecorated(*args, **kwargs):
+            current_user = get_jwt_identity()
+            role_id = current_user.split(",")[1]
+            print(role_id)
+            with app.app_context():
+                role_obj = Roles.query.get(role_id)
+                perms = role_obj.perms
+                perms_list = json.loads(perms)
+                ac_action = "order:" + action
+                if ac_action not in perms_list:
+                    return error_handler(NoPermission)
+            return f(*args, **kwargs)
+        return orderdecorated
+    return roles_permission
+
+def organ_permission(action="query"):
+    # 合作客户权限
+    def roles_permission(f):
+        @wraps(f)
+        def organdecorated(*args, **kwargs):
+            current_user = get_jwt_identity()
+            role_id = current_user.split(",")[1]
+            print(role_id)
+            with app.app_context():
+                role_obj = Roles.query.get(role_id)
+                perms = role_obj.perms
+                perms_list = json.loads(perms)
+                ac_action = "organ:" + action
+                if ac_action not in perms_list:
+                    return error_handler(NoPermission)
+            return f(*args, **kwargs)
+        return organdecorated
+    return roles_permission
+
 
 def get_roles(current_user):
     if current_user:
         user_id = current_user.split(',')[0]
-        roles = current_user.split(',')[-1]
-        return int(user_id), roles
+        role_id = current_user.split(',')[1]
+        role_name = current_user.split(',')[2]
+        dept_id = current_user.split(',')[3]
+        return int(user_id), role_id, role_name, dept_id
     else:
         return None

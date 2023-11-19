@@ -7,9 +7,12 @@ from sqlalchemy import or_, and_, not_, func, desc
 from shenlibackend.models.users import User
 from shenlibackend.models.users import Roles
 from shenlibackend.models.customer import Customer
+from shenlibackend.models.departments import Departments
 from shenlibackend.utils.shenliexceptions import *
 from shenlibackend.utils.snowflake import id_generator
 from shenlibackend.utils.roleutil import *
+
+from shenlibackend.utils.deptsutil import RolesHelper, DeptmentHelper
 
 from shenlibackend.utils.roleutil import allcustomer_permission
 
@@ -92,35 +95,42 @@ def delete_customer():
 
 # 删除员工
 @api.route('/querycustomer', methods=['POST'])
-# @jwt_required()
+@jwt_required()
 # @allcustomer_permission(action="query")
 def query_customer():
     data = request.get_json()
     # 查询条件
     condition = data.get("condition")
-    # 筛选条件
-    # company_type = data.get("company_type", None)
-    # customer_type = data.get("customer_type", None)
-    # business_type = data.get("business type", None)
-    # industry = data.get("industry", None)
-    # sales_consultant = data.get("sales_consultant", None)
-    # client_progress = data.get("client_progress", None)
-
-    # current_user = get_jwt_identity()
-    # user_id, role = get_roles(current_user)
-    #
-    # if role == 'admin':
-    #     pass
 
     page = data.get("page", 1)  # 默认页码为 1
     per_page = data.get("per_page", 10)  # 默认每页显示 10 条记录
 
-    user_objs = User.query.all()
+    role_helper = RolesHelper()
+
+    if role_helper.is_admin():
+        customer_query = Customer.query
+        user_objs = User.query.all()
+    if role_helper.is_manager():
+        dept_id = role_helper.dept_id
+        dept_obj = Departments.query.get(dept_id)
+        idlink = dept_obj.idlink
+        dept_helper = DeptmentHelper(dept_id, idlink)
+        all_dept_objs = dept_helper.get_sub_dept_obj()
+        all_dept_id = [item.id for item in all_dept_objs]
+        user_objs = User.query.filter(User.dept.in_(all_dept_id)).all()
+        user_ids = [item.id for item in user_objs]
+        customer_query = Customer.query.filter(
+            Customer.sales_consultant.in_(user_ids)
+        )
+    if role_helper.is_general():
+        customer_query = Customer.query.filter(
+            Customer.sales_consultant == role_helper.user_id
+        )
+        user_objs = User.query.filter(User.id == role_helper.user_id).all()
+
     user_objs_map = {
         str(item.id): item for item in user_objs
     }
-
-    customer_query = Customer.query
 
     if condition:
 
@@ -196,7 +206,7 @@ def query_customer():
 
 
 @api.route('/queryseascustomer', methods=['POST'])
-# @jwt_required()
+@jwt_required()
 def query_seas_customer():
     data = request.get_json()
     # 查询条件
