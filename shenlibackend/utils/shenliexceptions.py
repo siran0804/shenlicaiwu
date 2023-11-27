@@ -20,8 +20,8 @@ class NoPermission():
     """
     Has no permission
     """
-    display = False
-    msg = 'Has no permission'
+    display = True
+    msg = '当前用户角色无权限操作！'
     error_code = 1001
 
 
