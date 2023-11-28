@@ -14,3 +14,4 @@ from . import suppliers
 from . import performance
 
 from . import contract
+from . import seal
