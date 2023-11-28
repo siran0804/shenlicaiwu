@@ -23,7 +23,7 @@ class SealApplication(BaseModel):
     purpose_description = db.Column(db.String(1024))
 
     # 审批人id
-    application_id = db.Column(db.BigInteger)
+    approver_id = db.Column(db.BigInteger)
 
     # 审批人姓名
     approver_name = db.Column(db.String(255))

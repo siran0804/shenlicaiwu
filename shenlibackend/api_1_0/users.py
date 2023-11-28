@@ -384,6 +384,104 @@ def del_role():
     )
 
 
+@api.route("/deptleader", methods=["POST"])
+@jwt_required
+def dept_leader():
+    rh = RolesHelper()
+
+    dept_id = rh.dept_id
+
+    # 领导角色
+    role_objs = Roles.query.filter(
+        Roles.name.in_(['manager', 'admin'])
+    ).all()
+
+    role_ids = [item.id for item in role_objs]
+
+    leader_objs = User.query.filter(
+        User.dept == dept_id,
+        User.role.in_(role_ids)
+    ).all()
+
+    data = [item.serialize() for item in leader_objs]
+
+    return jsonify(
+        code=1000,
+        msg="success",
+        data=data
+    )
+
+
+@api.route("/updeptleader", methods=["POST"])
+@jwt_required
+def updept_leader():
+    rh = RolesHelper()
+
+    dept_id = rh.dept_id
+    dept_obj = Departments.query.get(dept_id)
+    idlink = dept_obj.idlink
+    idlink_split = idlink.split('|')
+    if len(idlink_split) == 1:
+        return jsonify(code=1000, msg="success", data=[])
+
+    up_dept_id = idlink_split[-2]
+
+    # 领导角色
+    role_objs = Roles.query.filter(
+        Roles.name.in_(['manager', 'admin'])
+    ).all()
+
+    role_ids = [item.id for item in role_objs]
+
+    leader_objs = User.query.filter(
+        User.dept == up_dept_id,
+        User.role.in_(role_ids)
+    ).all()
+
+    data = [item.serialize() for item in leader_objs]
+
+    return jsonify(
+        code=1000,
+        msg="success",
+        data=data
+    )
+
+
+@api.route("/companyleaders", methods=["POST"])
+@jwt_required
+def company_leader():
+    rh = RolesHelper()
+
+    dept_id = rh.dept_id
+    dept_obj = Departments.query.get(dept_id)
+    idlink = dept_obj.idlink
+    idlink_split = idlink.split('|')
+    if len(idlink_split) == 1:
+        return jsonify(code=1000, msg="success", data=[])
+
+    up_dept_id = idlink_split[2]
+
+    # 领导角色
+    role_objs = Roles.query.filter(
+        Roles.name.in_(['manager', 'admin'])
+    ).all()
+
+    role_ids = [item.id for item in role_objs]
+
+    leader_objs = User.query.filter(
+        User.dept == up_dept_id,
+        User.role.in_(role_ids)
+    ).all()
+
+    data = [item.serialize() for item in leader_objs]
+
+    return jsonify(
+        code=1000,
+        msg="success",
+        data=data
+    )
+
+
 @api.route("/hello")
 def hello():
     return error_handler(NoPermission)

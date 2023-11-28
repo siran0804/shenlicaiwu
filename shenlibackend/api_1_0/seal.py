@@ -6,6 +6,7 @@ from flask import jsonify, request, current_app
 from shenlibackend import db
 
 from shenlibackend.models.seal import *
+from shenlibackend.models.departments import Departments
 from shenlibackend.utils.snowflake import id_generator
 
 from shenlibackend.utils.shenliexceptions import *
@@ -90,6 +91,8 @@ def approval_sealapplication():
     data = request.json
     id = data.get("id")
     approval_result = data.get("approval_result", "")
+    next_approver_id = data.get("next_approver_id", None)
+    next_approver_name = data.get("next_approver_name", None)
 
     rh = RolesHelper()
     self_spc = SealApplication.query.get(id)
@@ -99,7 +102,11 @@ def approval_sealapplication():
 
     if approval_result:
         if approval_result == "同意":
-            pass
+            if str(rh.user_id) == str(current_app.config["ADMIN_ID"]):
+                self_spc.approval_status = "已通过"
+            else:
+                self_spc.application_id = next_approver_id
+                self_spc.approver_name = next_approver_name
         if approval_result == "不同意":
             self_spc.approval_status = "已拒绝"
 

@@ -64,6 +64,7 @@ class DevelopmentConfig(Config):
     SQLALCHEMY_POOL_TIMEOUT = 30
     SQLALCHEMY_POOL_RECYCLE = 1800
     RDEPT = 7110024143076200452
+    ADMIN_ID = 7124558089143062529
 
 
 class ProductionConfig(Config):
@@ -77,6 +78,7 @@ class ProductionConfig(Config):
     SQLALCHEMY_POOL_TIMEOUT = 30
     SQLALCHEMY_POOL_RECYCLE = 1800
     RDEPT = 7110024143076200452
+    ADMIN_ID = 7124558089143062529
 
 
 config_map = {
