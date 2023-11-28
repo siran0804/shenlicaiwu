@@ -31,5 +31,3 @@ class SealApplication(BaseModel):
     # 审批状态 "待审批"、"已通过"、"已拒绝"
     approval_status = db.Column(db.String(20), default="待审批")
 
-    # 审批意见
-    approval_comment = db.Column(db.String(1024))

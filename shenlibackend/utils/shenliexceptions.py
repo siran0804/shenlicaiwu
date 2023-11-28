@@ -150,6 +150,7 @@ class DepartmentsAlterError():
     msg = "移动部门失败"
     error_code = 2004
 
+
 class DepartmentsNotAllowDelError():
     """
     multiple login not allowed
@@ -194,6 +195,7 @@ class CustomerQueryError():
     msg = "查询客户失败"
     error_code = 3006
 
+
 class CustomerAssignError():
     display = True
     msg = "分配客户失败"
@@ -236,7 +238,61 @@ class PersonalPerformanceDelError():
     error_code = 5003
 
 
+class ServiceProviderContractAddError():
+    display = True
+    msg = "新增服务商合同失败"
+    error_code = 6001
 
 
+class ServiceProviderContractModifyError():
+    display = True
+    msg = "修改服务商合同失败"
+    error_code = 6002
 
 
+class ServiceProviderContractDelError():
+    display = True
+    msg = "删除服务商合同失败"
+    error_code = 6003
+
+
+class EmployeeContractAddError():
+    display = True
+    msg = "新增员工合同失败"
+    error_code = 7001
+
+
+class EmployeeContractModifyError():
+    display = True
+    msg = "修改员工合同失败"
+    error_code = 7002
+
+
+class EmployeeContractDelError():
+    display = True
+    msg = "删除员工合同失败"
+    error_code = 7003
+
+
+class SealApplicationAddError():
+    display = True
+    msg = "新增用章申请失败"
+    error_code = 8001
+
+
+class SealApplicationModifyError():
+    display = True
+    msg = "修改用章申请失败"
+    error_code = 8002
+
+
+class SealApplicationDelError():
+    display = True
+    msg = "删除用章申请失败"
+    error_code = 8003
+
+
+class SealApplicationApprovalError():
+    display = True
+    msg = "审批用章申请失败"
+    error_code = 8004

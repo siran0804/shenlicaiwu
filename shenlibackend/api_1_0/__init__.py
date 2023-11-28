@@ -12,3 +12,5 @@ from . import businessutil
 from . import suppliers
 
 from . import performance
+
+from . import contract
