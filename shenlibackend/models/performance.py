@@ -24,15 +24,16 @@ class PersonalPerformance(BaseModel):
 
     sales_consultant_name = db.Column(db.String(256))
 
-    deal_price = db.Column(db.String(128))
-
+    # 成交价格
+    deal_price = db.Column(db.INTEGER)
+    # 成交合同
     deal_contract = db.Column(db.String(128))
-
-    product_amount = db.Column(db.INTEGER)
-
-    quantity = db.Column(db.INTEGER)
-
+    # 月份
     month = db.Column(db.String(65))
+    # 季度
+    season = db.Column(db.String(65))
+    # 年度
+    year = db.Column(db.String(65))
 
 
 class DepartmentPerformance(BaseModel):
