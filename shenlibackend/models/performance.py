@@ -29,24 +29,8 @@ class PersonalPerformance(BaseModel):
     # 成交合同
     deal_contract = db.Column(db.String(128))
     # 月份
-    month = db.Column(db.String(65))
+    month = db.Column(db.INTEGER)
     # 季度
-    season = db.Column(db.String(65))
+    season = db.Column(db.INTEGER)
     # 年度
-    year = db.Column(db.String(65))
-
-
-class DepartmentPerformance(BaseModel):
-    __tablename__ = "departmentperformance"
-
-    id = db.Column(db.BigInteger, primary_key=True)
-
-    dept = db.Column(db.BigInteger)
-
-    product_type = db.Column(db.String(256))
-
-    product_amount = db.Column(db.INTEGER)
-
-    quantity = db.Column(db.INTEGER)
-
-    month = db.Column(db.DateTime)
+    year = db.Column(db.INTEGER)
