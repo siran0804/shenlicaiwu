@@ -5,7 +5,7 @@ from sqlalchemy import func
 from shenlibackend import db
 
 
-from shenlibackend.models.performance import PersonalPerformance, DepartmentPerformance
+from shenlibackend.models.performance import PersonalPerformance
 from shenlibackend.utils.snowflake import id_generator
 
 from shenlibackend.utils.shenliexceptions import *
@@ -91,7 +91,7 @@ def delete_selfperformance():
 
 
 @api.route("/queryselfperformance", methods=['POST'])
-@jwt_required
+@jwt_required()
 def query_selfperformance():
 
     data = request.get_json()
@@ -111,7 +111,7 @@ def query_selfperformance():
 
     year = data.get("year", None)
     season = data.get("season", None)
-    month = data.get("year", None)
+    month = data.get("month", None)
 
     year_total, season_total, month_total = None, None, None
 
@@ -172,8 +172,8 @@ def query_selfperformance():
         data={
             "data": performance_list,
             "total": performance.total,
-            "year_total": year_total,
-            "season_total": season_total,
-            "month_total": month_total
+            "year_total": int(year_total) if year_total else None,
+            "season_total": int(season_total) if season_total else None,
+            "month_total": int(month_total) if month_total else None
         }
     )

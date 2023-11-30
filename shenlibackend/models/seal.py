@@ -3,7 +3,7 @@ from shenlibackend import db
 
 
 class SealApplication(BaseModel):
-    __tablename__ = "personalperformance"
+    __tablename__ = "sealapplication"
 
     id = db.Column(db.BigInteger, primary_key=True)
 

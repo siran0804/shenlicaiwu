@@ -25,6 +25,7 @@ def create_app(config_name):
     app.config.from_object(config_class)
     jwt.init_app(app)
     db.init_app(app)
+    # db.metadata.clear()
     CORS(app, supports_credentials=True)
     global redis_store
 

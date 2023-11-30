@@ -3,7 +3,7 @@ from shenlibackend import db
 
 
 class ServiceProviderContract(BaseModel):
-    __tablename__ = "personalperformance"
+    __tablename__ = "ServiceProviderContract"
 
     id = db.Column(db.BigInteger, primary_key=True)
 
@@ -27,7 +27,7 @@ class ServiceProviderContract(BaseModel):
 
 
 class EmployeeContract(BaseModel):
-    __tablename__ = "departmentperformance"
+    __tablename__ = "EmployeeContract"
 
     id = db.Column(db.BigInteger, primary_key=True)
 

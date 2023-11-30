@@ -385,7 +385,7 @@ def del_role():
 
 
 @api.route("/deptleader", methods=["POST"])
-@jwt_required
+@jwt_required()
 def dept_leader():
     rh = RolesHelper()
 
@@ -413,7 +413,7 @@ def dept_leader():
 
 
 @api.route("/updeptleader", methods=["POST"])
-@jwt_required
+@jwt_required()
 def updept_leader():
     rh = RolesHelper()
 
@@ -448,7 +448,7 @@ def updept_leader():
 
 
 @api.route("/companyleaders", methods=["POST"])
-@jwt_required
+@jwt_required()
 def company_leader():
     rh = RolesHelper()
 

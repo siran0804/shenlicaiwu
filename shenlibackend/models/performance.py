@@ -3,7 +3,8 @@ from shenlibackend import db
 
 
 class PersonalPerformance(BaseModel):
-    __tablename__ = "personalperformance"
+    __tablename__ = "personalperformances"
+    __table_args__ = {'extend_existing': True}
 
     id = db.Column(db.BigInteger, primary_key=True)
 
