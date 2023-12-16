@@ -5,6 +5,9 @@ from . import api
 from flask import jsonify, request, current_app
 from sqlalchemy import or_
 from shenlibackend import db
+
+from shenlibackend.dao.users_dao import UserDao
+
 from shenlibackend.models.users import User
 from shenlibackend.models.users import Roles
 from shenlibackend.models.departments import Departments
@@ -415,28 +418,16 @@ def dept_leader():
 @api.route("/updeptleader", methods=["POST"])
 @jwt_required()
 def updept_leader():
-    rh = RolesHelper()
 
-    dept_id = rh.dept_id
-    dept_obj = Departments.query.get(dept_id)
-    idlink = dept_obj.idlink
-    idlink_split = idlink.split('|')
-    if len(idlink_split) == 1:
-        return jsonify(code=1000, msg="success", data=[])
+    data = request.get_json()
+    dept = data.get("dept", None)
+    if not dept:
+        rh = RolesHelper()
+        dept_id = rh.dept_id
+    else:
+        dept_id = dept
 
-    up_dept_id = idlink_split[-2]
-
-    # 领导角色
-    role_objs = Roles.query.filter(
-        Roles.name.in_(['manager', 'admin'])
-    ).all()
-
-    role_ids = [item.id for item in role_objs]
-
-    leader_objs = User.query.filter(
-        User.dept == up_dept_id,
-        User.role.in_(role_ids)
-    ).all()
+    leader_objs = UserDao.get_up_leaders(dept=dept_id)
 
     data = [item.serialize() for item in leader_objs]
 
@@ -453,25 +444,51 @@ def company_leader():
     rh = RolesHelper()
 
     dept_id = rh.dept_id
-    dept_obj = Departments.query.get(dept_id)
-    idlink = dept_obj.idlink
-    idlink_split = idlink.split('|')
-    if len(idlink_split) == 1:
-        return jsonify(code=1000, msg="success", data=[])
 
-    up_dept_id = idlink_split[2]
+    leader_objs = UserDao.get_company_leader(dept=dept_id)
 
-    # 领导角色
-    role_objs = Roles.query.filter(
-        Roles.name.in_(['manager', 'admin'])
-    ).all()
+    data = [item.serialize() for item in leader_objs]
 
-    role_ids = [item.id for item in role_objs]
+    return jsonify(
+        code=1000,
+        msg="success",
+        data=data
+    )
 
-    leader_objs = User.query.filter(
-        User.dept == up_dept_id,
-        User.role.in_(role_ids)
-    ).all()
+@api.route("/allcompanyleaders", methods=["POST"])
+@jwt_required()
+def company_leader():
+    leader_objs = UserDao.get_company_leader(dept=None)
+
+    data = [item.serialize() for item in leader_objs]
+
+    return jsonify(
+        code=1000,
+        msg="success",
+        data=data
+    )
+
+@api.route("/teamleaders", methods=["POST"])
+@jwt_required()
+def company_leader():
+    rh = RolesHelper()
+
+    dept_id = rh.dept_id
+
+    leader_objs = UserDao.get_team_leader(dept=dept_id)
+
+    data = [item.serialize() for item in leader_objs]
+
+    return jsonify(
+        code=1000,
+        msg="success",
+        data=data
+    )
+
+@api.route("/teamleaders", methods=["POST"])
+@jwt_required()
+def company_leader():
+    leader_objs = UserDao.get_team_leader(dept=None)
 
     data = [item.serialize() for item in leader_objs]
 

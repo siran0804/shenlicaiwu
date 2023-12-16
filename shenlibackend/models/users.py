@@ -31,6 +31,8 @@ class User(UserMixin, BaseModel):
     role = db.Column(db.BigInteger)
     dept = db.Column(db.BigInteger)
 
+    leader = db.Column(db.BigInteger)
+
     @property
     def password(self):
         raise AttributeError('password is not a readable attribute')

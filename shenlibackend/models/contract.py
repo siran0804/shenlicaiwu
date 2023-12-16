@@ -31,32 +31,17 @@ class EmployeeContract(BaseModel):
 
     id = db.Column(db.BigInteger, primary_key=True)
 
-    # 公司名称
-    company_name = db.Column(db.String(255))
+    # 公司id
+    company_id = db.Column(db.BigInteger)
 
     # 公司负责人id
     company_leaders_id = db.Column(db.BigInteger)
 
-    # 公司负责人姓名
-    company_leaders_name = db.Column(db.String(128))
-
-    # 公司负责人联系方式
-    company_leaders_contact = db.Column(db.String(128))
-
     # 团队负责人id
     team_leader_id = db.Column(db.BigInteger)
 
-    # 团队负责人姓名
-    team_leader_name = db.Column(db.String(128))
-
-    # 团队负责人联系方式
-    team_leader_contact = db.Column(db.String(128))
-
-    # 销售姓名
-    sales_name = db.Column(db.String(128))
-
-    # 销售电话
-    sales_phone = db.Column(db.String(128))
+    # 销售人员id
+    sales_id = db.Column(db.BigInteger)
 
     # 销售合同 文件或照片上传
     sales_contract = db.Column(db.String(128))

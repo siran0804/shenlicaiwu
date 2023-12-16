@@ -23,8 +23,6 @@ class PersonalPerformance(BaseModel):
 
     sales_consultant_id = db.Column(db.BigInteger)
 
-    sales_consultant_name = db.Column(db.String(256))
-
     # 成交价格
     deal_price = db.Column(db.INTEGER)
     # 成交合同

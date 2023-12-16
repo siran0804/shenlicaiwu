@@ -6,6 +6,8 @@ from shenlibackend import db
 
 
 from shenlibackend.models.performance import PersonalPerformance
+from shenlibackend.models.departments import Departments
+from shenlibackend.models.users import User
 from shenlibackend.utils.snowflake import id_generator
 
 from shenlibackend.utils.shenliexceptions import *
@@ -122,6 +124,106 @@ def query_selfperformance():
 
     performance_query = PersonalPerformance.query.filter(
         PersonalPerformance.sales_consultant_id == user_id,
+    )
+
+    performance_query = performance_query.filter(
+        PersonalPerformance.year == year,
+    )
+
+    year_total = performance_query.with_entities(func.sum(PersonalPerformance.deal_price)).scalar()
+
+    if season:
+        performance_query = performance_query.filter(
+            PersonalPerformance.season == season
+        )
+
+        season_total = performance_query.with_entities(func.sum(PersonalPerformance.deal_price)).scalar()
+
+    if month:
+        performance_query = performance_query.filter(
+            PersonalPerformance.month == month
+        )
+
+        month_total = performance_query.with_entities(func.sum(PersonalPerformance.deal_price)).scalar()
+
+
+    if condition:
+        employee_name = condition.get("employee_name", "")
+        product_type = condition.get("product_type", "")
+
+        if employee_name:
+            performance_query = performance_query.filter(
+                PersonalPerformance.employee_name.like("%" + employee_name + "%")
+            )
+
+        if product_type:
+            performance_query = performance_query.filter(
+                PersonalPerformance.product_type == product_type
+            )
+
+
+    # 分页查询
+    performance = performance_query.paginate(page=page, per_page=per_page)
+
+    performance_list = [p.serialize() for p in performance.items]
+
+    return jsonify(
+        code=1000,
+        msg="success",
+        display=False,
+        data={
+            "data": performance_list,
+            "total": performance.total,
+            "year_total": int(year_total) if year_total else None,
+            "season_total": int(season_total) if season_total else None,
+            "month_total": int(month_total) if month_total else None
+        }
+    )
+
+
+@api.route("/querydeptperformance", methods=['POST'])
+@jwt_required()
+def query_deptperformance():
+
+    data = request.get_json()
+
+    role_helper = RolesHelper()
+    dept_id = role_helper.dept_id
+    dept_obj = Departments.query.get(dept_id)
+    id_link = dept_obj.idlink
+
+    dept_helper = DeptmentHelper(dept_id, id_link)
+    sub_depts = dept_helper.get_sub_dept_obj()
+
+    sub_depts_ids = [item.id for item in sub_depts]
+    user_objs = User.query.filter(
+        User.dept.in_(sub_depts_ids)
+    ).all()
+    user_ids = [item.id for item in user_objs]
+
+    condition = data.get("condition", {})
+
+    page = data.get("page", 1)  # 默认页码为 1
+    per_page = data.get("per_page", 10)  # 默认每页显示 10 条记录
+
+    current_time = datetime.now()
+    current_year = current_time.year
+    current_month = current_time.month
+    current_quarter = (current_month - 1) // 3 + 1
+
+    year = data.get("year", None)
+    season = data.get("season", None)
+    month = data.get("month", None)
+
+    year_total, season_total, month_total = None, None, None
+
+    if not year:
+        year = current_year
+        season = current_quarter
+        month = current_month
+
+    performance_query = PersonalPerformance.query.filter(
+        PersonalPerformance.sales_consultant_id.in_(user_ids),
     )
 
     performance_query = performance_query.filter(
